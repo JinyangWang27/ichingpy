@@ -59,3 +59,28 @@ def test_hexagram():
     assert len(hexagram.yao) == 6
     assert isinstance(hexagram.inner, Trigram)
     assert isinstance(hexagram.outer, Trigram)
+
+
+def test_hexagram_from_shi_cao():
+    hexagram = Hexagram.from_shi_cao()
+    assert len(hexagram.yao) == 6
+    assert isinstance(hexagram.inner, Trigram)
+    assert isinstance(hexagram.outer, Trigram)
+
+
+def test_hexagram_from_trigrams():
+    upper = Trigram()
+    lower = Trigram()
+    hexagram = Hexagram.from_trigram(upper, lower)
+    assert isinstance(hexagram, Hexagram)
+
+
+def test_hexagram_correct_range_of_yao_number():
+    results: list[int] = []
+    for _ in range(100):
+        yu_ce_1 = Hexagram.bian(49)
+        yu_ce_2 = Hexagram.bian(yu_ce_1)
+        yu_ce_3 = Hexagram.bian(yu_ce_2)
+        results.append(yu_ce_3 // 4)
+    assert max(results) == 9
+    assert min(results) == 6

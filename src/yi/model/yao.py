@@ -19,6 +19,15 @@ class Yao(int, Enum):
         return Yao(random.getrandbits(1))
 
     @property
+    def is_transform(self) -> bool:
+        """bool: Whether the Yao needs to be transformed (变爻)"""
+        return self._is_transform
+
+    @is_transform.setter
+    def is_transform(self, value: bool) -> None:
+        self._is_transform = value
+
+    @property
     def stem(self) -> HeavenlyStem:
         return self._stem
 
