@@ -1,0 +1,46 @@
+{
+    "[python]": {
+        "editor.rulers": [
+            120
+        ],
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": "always",
+            "source.addMissingImports": "explicit"
+        },
+        "editor.defaultFormatter": "ms-python.black-formatter"
+    },
+    "editor.showFoldingControls": "always",
+    "editor.folding": true,
+    "editor.foldingStrategy": "auto",
+    "python.analysis.typeCheckingMode": "strict",
+    "python.analysis.diagnosticMode": "workspace",
+    "python.testing.autoTestDiscoverOnSaveEnabled": true,
+    // "python.analysis.extraPaths": ["src"],
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true,
+        ".venv/": true,
+        ".pytest_cache/": true,
+        "**/__pycache__/": true,
+        ".coverage": true,
+        "**/*.egg-info/": true,
+        "__init__.py": false // Set to true/false to hide __init__.py files
+    },
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true,
+    "jupyter.notebookFileRoot": "${workspaceFolder}",
+    "python.analysis.autoImportCompletions": true,
+    "python.analysis.autoFormatStrings": true,
+    "python.testing.pytestArgs": [
+        "tests"
+    ],
+    "isort.args": [
+        "--profile",
+        "black"
+    ],
+}

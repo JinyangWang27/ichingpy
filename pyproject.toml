@@ -1,0 +1,56 @@
+[build-system]
+requires = ["wheel", "setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "yi" 
+version = "0.1.0"
+requires-python = ">=3.10"
+description = ""
+readme = "README.md"
+
+authors = [
+    {name = "Jinyang Wang", email = "jinyang.wang27@outlook.com"},
+]
+
+dependencies = []
+
+
+[project.optional-dependencies]
+dev = [
+    "black",
+    "pytest",
+    "pytest-cov",
+    "ipykernel",
+    "rich",
+    "mkdocstrings",
+    "mkdocs-material",
+    "mkdocstrings-python"
+]
+
+
+[options]
+package_dir = "src"
+zip_safe = true
+include_package_data = true
+
+[tool.isort]
+line_length = 120
+
+[tool.pytest.ini_options]
+testpaths = "tests/"
+addopts = "--cov --cov-report html --cov-report term-missing --cov-fail-under 80"
+
+[tool.coverage]
+  [tool.coverage.run]
+  source = ["src"]
+
+  [tool.coverage.report]
+  skip_empty = true
+  exclude_lines = [
+    "pragma: no cover",
+    "if __name__ == .__main__.:",
+    "class .*\\bProtocol\\):",
+    "@(abc\\.)?abstractmethod",
+    "raise NotImplementedError",
+    ]
