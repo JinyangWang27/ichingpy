@@ -30,3 +30,17 @@ class HeavenlyStem(MixEnum):
 
     def __radd__(self, other: Self | int) -> "HeavenlyStem":
         return self.__add__(other)
+
+    def __sub__(self, other: Self | int) -> "HeavenlyStem":
+        """Subtract an integer or a HeavenlyStem from the HeavenlyStem.
+
+        Args:
+            other (int): The integer to subtract from the HeavenlyStem.
+
+        Returns:
+            HeavenlyStem: The resulting HeavenlyStem after subtraction.
+        """
+        return HeavenlyStem((self.value - int(other) - 1) % 10 + 1)
+
+    def __rsub__(self, other: Self | int) -> "HeavenlyStem":
+        return self.__sub__(other)

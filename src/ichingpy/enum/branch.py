@@ -32,3 +32,17 @@ class EarthlyBranch(MixEnum):
 
     def __radd__(self, other: Self | int) -> "EarthlyBranch":
         return self.__add__(other)
+
+    def __sub__(self, other: Self | int) -> "EarthlyBranch":
+        """Subtract an integer or an EarthlyBranch from the EarthlyBranch.
+
+        Args:
+            other (int): The integer to subtract from the EarthlyBranch.
+
+        Returns:
+            EarthlyBranch: The resulting EarthlyBranch after subtraction.
+        """
+        return EarthlyBranch((self.value - int(other) - 1) % 12 + 1)
+
+    def __rsub__(self, other: Self | int) -> "EarthlyBranch":
+        return self.__sub__(other)

@@ -77,3 +77,19 @@ class SexagenaryCycle:
             bool: True if the SexagenaryCycle is equal to the other SexagenaryCycle.
         """
         return self.value == other.value
+
+    def __sub__(self, other: Self | int) -> "SexagenaryCycle":
+        """Subtract an integer or a SexagenaryCycle from the SexagenaryCycle.
+
+        Args:
+            other (int): The integer to subtract from the SexagenaryCycle.
+
+        Returns:
+            SexagenaryCycle: The resulting SexagenaryCycle after subtraction.
+        """
+        if isinstance(other, int):
+            return SexagenaryCycle(self.stem - other, self.branch - other)
+        return SexagenaryCycle(self.stem - int(other.stem), self.branch - int(other.branch))
+
+    def __rsub__(self, other: Self | int) -> "SexagenaryCycle":
+        return self.__sub__(other)

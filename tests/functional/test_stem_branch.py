@@ -10,6 +10,8 @@ def test_stem():
     assert jia + jia == HeavenlyStem.Yi
     assert jia + 2 == HeavenlyStem.Bing
     assert jia + 10 == HeavenlyStem.Jia
+    assert jia - 1 == HeavenlyStem.Gui
+    assert 1 - jia - jia == HeavenlyStem.Ren
 
 
 def test_branch():
@@ -20,6 +22,8 @@ def test_branch():
     assert zi + zi == EarthlyBranch.Chou
     assert zi + 2 == EarthlyBranch.Yin
     assert zi + 12 == EarthlyBranch.Zi
+    assert zi - 1 == EarthlyBranch.Hai
+    assert 1 - zi - zi == EarthlyBranch.Xu
 
 
 def test_sexagenary_cycle():
@@ -30,6 +34,8 @@ def test_sexagenary_cycle():
     assert jia_zi + 1 == SexagenaryCycle(HeavenlyStem.Yi, EarthlyBranch.Chou)
     assert jia_zi + 60 == jia_zi
     assert 60 + jia_zi == jia_zi
+    assert jia_zi - 1 == SexagenaryCycle(HeavenlyStem.Gui, EarthlyBranch.Hai)
+    assert 1 - jia_zi - jia_zi == SexagenaryCycle(HeavenlyStem.Ren, EarthlyBranch.Xu)
 
 
 def test_sexagenary_cycle_from_int():
