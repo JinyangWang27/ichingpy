@@ -1,7 +1,7 @@
 import pytest
 
-from yi.model.line import Line
-from yi.model.trigram import Trigram
+from ichingpy.model.line import Line
+from ichingpy.model.trigram import Trigram
 
 
 @pytest.mark.parametrize(

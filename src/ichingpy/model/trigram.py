@@ -2,8 +2,8 @@ from typing import ClassVar, Self
 
 from pydantic import BaseModel, field_validator
 
-from yi.enum import HeavenlyStem, LineStatus
-from yi.model.line import Line
+from ichingpy.enum import HeavenlyStem, LineStatus
+from ichingpy.model.line import Line
 
 
 class Trigram(BaseModel):

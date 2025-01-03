@@ -1,6 +1,6 @@
 from typing import Self
 
-from yi.enum.mixed_enum import MixEnum
+from ichingpy.enum.mixed_enum import MixEnum
 
 
 class HeavenlyStem(MixEnum):

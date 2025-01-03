@@ -4,9 +4,9 @@ from typing import Self
 
 from pydantic import BaseModel
 
-from yi.enum.line_status import LineStatus
-from yi.model.line import Line
-from yi.model.trigram import Trigram
+from ichingpy.enum.line_status import LineStatus
+from ichingpy.model.line import Line
+from ichingpy.model.trigram import Trigram
 
 
 class Hexagram(BaseModel):

@@ -1,8 +1,8 @@
 import pytest
 
-from yi.calculator.assigner import HexagramAssigner
-from yi.enum import HeavenlyStem
-from yi.model.hexagram import Hexagram
+from ichingpy.calculator.assigner import HexagramAssigner
+from ichingpy.enum import HeavenlyStem
+from ichingpy.model.hexagram import Hexagram
 
 
 @pytest.fixture

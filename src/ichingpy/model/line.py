@@ -4,7 +4,7 @@ from typing import Self
 
 from pydantic import BaseModel
 
-from yi.enum import EarthlyBranch, HeavenlyStem, LineStatus
+from ichingpy.enum import EarthlyBranch, HeavenlyStem, LineStatus
 
 
 class LineTransformationError(Exception):

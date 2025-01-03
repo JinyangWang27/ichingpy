@@ -1,7 +1,7 @@
 # %%
 
-from yi.enum import HeavenlyStem
-from yi.model.hexagram import Hexagram, Trigram
+from ichingpy.enum import HeavenlyStem
+from ichingpy.model.hexagram import Hexagram, Trigram
 
 
 class HexagramAssigner:

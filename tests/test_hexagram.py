@@ -1,5 +1,5 @@
-from yi.enum import HeavenlyStem
-from yi.model.hexagram import Hexagram, Trigram
+from ichingpy.enum import HeavenlyStem
+from ichingpy.model.hexagram import Hexagram, Trigram
 
 
 def test_hexagram():
@@ -26,7 +26,7 @@ def test_hexagram_from_trigrams():
 
 def test_hexagram_correct_range_of_line_number():
     results: list[int] = []
-    for _ in range(100):
+    for _ in range(1000):
         yu_ce_1 = Hexagram.bian(49)
         yu_ce_2 = Hexagram.bian(yu_ce_1)
         yu_ce_3 = Hexagram.bian(yu_ce_2)

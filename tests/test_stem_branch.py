@@ -1,5 +1,5 @@
-from yi.enum import EarthlyBranch, HeavenlyStem
-from yi.model.sexagenary_cycle import SexagenaryCycle
+from ichingpy.enum import EarthlyBranch, HeavenlyStem
+from ichingpy.model.sexagenary_cycle import SexagenaryCycle
 
 
 def test_stem():
