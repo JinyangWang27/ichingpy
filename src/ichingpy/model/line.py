@@ -24,6 +24,11 @@ class Line(BaseModel):
                 representation += f" X -> -----"
             else:
                 representation += f" O -> -- --"
+
+        stem = f"{self.stem.label} " if hasattr(self, "_stem") else ""
+        branch = f"{self.branch.label} " if hasattr(self, "_branch") else ""
+
+        representation = f"{stem}{branch}{representation}"
         return representation
 
     @property

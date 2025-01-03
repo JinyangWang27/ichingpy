@@ -1,4 +1,14 @@
+from ichingpy.assigners import *
 from ichingpy.enum import *
 from ichingpy.model import *
 
-__all__ = ["Line", "LineStatus", "HeavenlyStem", "EarthlyBranch", "Hexagram", "Trigram", "SexagenaryCycle"]
+__all__ = [
+    "Line",
+    "LineStatus",
+    "HeavenlyStem",
+    "EarthlyBranch",
+    "Hexagram",
+    "Trigram",
+    "SexagenaryCycle",
+    "StemBranchAssigner",
+]

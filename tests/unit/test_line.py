@@ -17,3 +17,22 @@ def test_line_transform_static_line_error():
     line = Line(status=LineStatus.STATIC_YANG)
     with pytest.raises(LineTransformationError):
         _ = line.get_transformed()
+
+
+def test_line_repr_with_stem():
+    line = Line(status=LineStatus.STATIC_YANG)
+    line.stem = HeavenlyStem.Jia
+    assert repr(line) == "甲 -----"
+
+
+def test_line_repr_with_branch():
+    line = Line(status=LineStatus.STATIC_YANG)
+    line.branch = EarthlyBranch.Zi
+    assert repr(line) == "子 -----"
+
+
+def test_line_repr_with_both_stem_and_branch():
+    line = Line(status=LineStatus.STATIC_YANG)
+    line.stem = HeavenlyStem.Jia
+    line.branch = EarthlyBranch.Zi
+    assert repr(line) == "甲 子 -----"
