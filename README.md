@@ -26,10 +26,17 @@ yin = icp.Line(status=icp.LineStatus.CHANGING)
 ```
 
 Create a Trigram (八卦)
+The default constructor takes a list of Lines. An alternative constructor is to create from "binary" as defined in LineStatus:
+
+ - 0: changing yin (老阴)
+ - 1： static yang (少阳)
+ - 2: static yin (少阴)
+ - 3: changing yang (老阳)
+
 ```python
 qian = icp.Trigram.from_binary([1, 1, 1])
 ```
-
+The order is from the inside (初爻， 二爻， 三爻).
 
 Create a Hexagram with transformation (变卦)
 ```python
@@ -87,4 +94,24 @@ hexagram.inner.stem
 乙丑
 >>> jia_zi+60
 甲子
+```
+#### Assign Stem and Branch to a hexagram (装卦、纳甲)
+```python
+>>> gou = icp.Hexagram.from_binary([2, 1, 1, 1, 1, 1]) 
+>>> gou
+-----
+-----
+-----
+-----
+-----
+-- --
+>>> assigner = icp.StemBranchAssigner()
+>>> assigner.assign(gou) 
+>>> gou
+壬 戌 -----
+壬 申 -----
+壬 午 -----
+辛 酉 -----
+辛 亥 -----
+辛 丑 -- --
 ```
