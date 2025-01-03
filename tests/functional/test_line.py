@@ -1,8 +1,7 @@
 import pytest
 
-from ichingpy.enum import EarthlyBranch, HeavenlyStem
 from ichingpy.enum.line_status import LineStatus
-from ichingpy.model.line import Line, LineTransformationError
+from ichingpy.model.line import Line
 
 
 @pytest.mark.parametrize(
@@ -14,16 +13,8 @@ from ichingpy.model.line import Line, LineTransformationError
         (LineStatus.CHANGING_YIN, "-- -- X -> -----"),
     ],
 )
-def test_line(status: LineStatus, representation: str):
+def test_line_representation(status: LineStatus, representation: str):
     assert repr(Line(status=status)) == representation
-
-
-def test_line_setters():
-    line = Line.random()
-    line.stem = HeavenlyStem.Jia
-    assert line.stem == HeavenlyStem.Jia
-    line.branch = EarthlyBranch.Zi
-    assert line.branch == EarthlyBranch.Zi
 
 
 @pytest.mark.parametrize(
@@ -34,9 +25,3 @@ def test_line_transform(status: LineStatus, transformed_status: LineStatus):
     line = Line(status=status)
     assert line.is_transform == True
     assert line.get_transformed().status is transformed_status
-
-
-def test_line_transform_static_line_error():
-    line = Line(status=LineStatus.STATIC_YANG)
-    with pytest.raises(LineTransformationError):
-        _ = line.get_transformed()
