@@ -1,81 +1,30 @@
-import pytest
-
-from yi.model.hexagram import Hexagram, Trigram, Yao
-from yi.model.stem_branch import EarthlyBranch, HeavenlyStem
-
-
-def test_yao():
-    yao = Yao.random()
-    assert yao.value in [0, 1]
-
-    assert repr(Yao.Yin) == "▅▅  ▅▅"
-    assert repr(Yao.Yang) == "▅▅▅▅▅▅"
-
-
-def test_yao_setters():
-    yao = Yao.random()
-    yao.stem = HeavenlyStem.Jia
-    assert yao.stem == HeavenlyStem.Jia
-    yao.branch = EarthlyBranch.Zi
-    assert yao.branch == EarthlyBranch.Zi
-
-
-def test_yao_transform():
-    yao = Yao.random()
-    assert yao.transform().value == 1 - yao.value
-
-
-@pytest.mark.parametrize(
-    "yao, name, symbol",
-    [
-        ((1, 1, 1), "乾", "▅▅▅▅▅▅\n▅▅▅▅▅▅\n▅▅▅▅▅▅"),
-        ((1, 1, 0), "兑", "▅▅  ▅▅\n▅▅▅▅▅▅\n▅▅▅▅▅▅"),
-        ((1, 0, 1), "离", "▅▅▅▅▅▅\n▅▅  ▅▅\n▅▅▅▅▅▅"),
-        ((1, 0, 0), "震", "▅▅  ▅▅\n▅▅  ▅▅\n▅▅▅▅▅▅"),
-        ((0, 1, 1), "巽", "▅▅▅▅▅▅\n▅▅▅▅▅▅\n▅▅  ▅▅"),
-        ((0, 1, 0), "坎", "▅▅  ▅▅\n▅▅▅▅▅▅\n▅▅  ▅▅"),
-        ((0, 0, 1), "艮", "▅▅▅▅▅▅\n▅▅  ▅▅\n▅▅  ▅▅"),
-        ((0, 0, 0), "坤", "▅▅  ▅▅\n▅▅  ▅▅\n▅▅  ▅▅"),
-    ],
-)
-def test_trigram(yao: tuple[int, int, int], name: str, symbol: str):
-    trigram = Trigram(yao)
-    assert len(trigram.yao) == 3
-    assert trigram.name == name
-    assert repr(trigram) == symbol
-
-
-def test_trigram_random():
-    assert isinstance(Trigram(), Trigram)
-
-
-def test_Trigram_raise_value_error_on_invalid_input():
-    with pytest.raises(ValueError):
-        _ = Trigram([1, 1, 1, 1])  # type: ignore
+from yi.model.hexagram import Hexagram, Trigram
+from yi.model.stem_branch import HeavenlyStem
 
 
 def test_hexagram():
-    hexagram = Hexagram()
-    assert len(hexagram.yao) == 6
-    assert isinstance(hexagram.inner, Trigram)
-    assert isinstance(hexagram.outer, Trigram)
+    hexagram = Hexagram.random()
+    assert len(hexagram.lines) == 6
 
 
-def test_hexagram_from_shi_cao():
-    hexagram = Hexagram.from_shi_cao()
-    assert len(hexagram.yao) == 6
-    assert isinstance(hexagram.inner, Trigram)
-    assert isinstance(hexagram.outer, Trigram)
+def test_hexagram_from_yarrow_stalks():
+    hexagram = Hexagram.from_yarrow_stalks()
+    assert len(hexagram.lines) == 6
+
+
+def test_hexagram_from_three_coins():
+    hexagram = Hexagram.from_three_coins()
+    assert len(hexagram.lines) == 6
 
 
 def test_hexagram_from_trigrams():
-    upper = Trigram()
-    lower = Trigram()
-    hexagram = Hexagram.from_trigram(upper, lower)
+    inner = Trigram.random()
+    outer = Trigram.random()
+    hexagram = Hexagram(inner=inner, outer=outer)
     assert isinstance(hexagram, Hexagram)
 
 
-def test_hexagram_correct_range_of_yao_number():
+def test_hexagram_correct_range_of_line_number():
     results: list[int] = []
     for _ in range(100):
         yu_ce_1 = Hexagram.bian(49)
@@ -84,3 +33,18 @@ def test_hexagram_correct_range_of_yao_number():
         results.append(yu_ce_3 // 4)
     assert max(results) == 9
     assert min(results) == 6
+
+
+def test_hexagram_inner_setter():
+    gua = Hexagram.random()
+    gua.inner.stem = HeavenlyStem.Jia
+    gua.outer.stem = HeavenlyStem.Bing
+    assert gua.inner.stem == [HeavenlyStem.Jia] * 3
+    assert gua.outer.stem == [HeavenlyStem.Bing] * 3
+
+
+def test_hexagram_transform():
+    qian_zhi_gou = Hexagram.from_binary([3, 1, 1, 1, 1, 1])
+    transformed = qian_zhi_gou.get_transformed()
+    assert transformed.inner.name == "巽"
+    assert transformed.outer.name == "乾"

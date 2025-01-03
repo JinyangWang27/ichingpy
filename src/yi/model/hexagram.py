@@ -2,74 +2,37 @@
 import random
 from typing import Self
 
-from yi.model.yao import Yao
+from pydantic import BaseModel
+
+from yi.enum.line_status import LineStatus
+from yi.model.line import Line
+from yi.model.trigram import Trigram
 
 
-class Trigram:
+class Hexagram(BaseModel):
 
-    NAME_MAP: dict[tuple[int, int, int], str] = {
-        (1, 1, 1): "乾",
-        (1, 1, 0): "兑",
-        (1, 0, 1): "离",
-        (1, 0, 0): "震",
-        (0, 1, 1): "巽",
-        (0, 1, 0): "坎",
-        (0, 0, 1): "艮",
-        (0, 0, 0): "坤",
-    }
+    inner: Trigram
+    outer: Trigram
 
-    def __init__(self, yao: tuple[int, int, int] | None = None):
-
-        if yao is None:
-            self._yao = (Yao.random(), Yao.random(), Yao.random())
-        elif len(yao) == 3:
-            self._yao = (Yao(yao[0]), Yao(yao[1]), Yao(yao[2]))
-        else:
-            raise ValueError(f"Invalid input {yao}")
+    @property
+    def lines(self) -> list[Line]:
+        return self.inner.lines + self.outer.lines
 
     def __repr__(self):
-        return "\n".join(repr(yao) for yao in self.yao[::-1])
+        return "\n".join(repr(line) for line in self.lines[::-1])
 
-    @property
-    def yao(self) -> tuple[Yao, Yao, Yao]:
-        return self._yao
-
-    @property
-    def name(self) -> str:
-        yao_int = [int(yao.value) for yao in self.yao]
-        return self.NAME_MAP[(yao_int[0], yao_int[1], yao_int[2])]
-
-
-class Hexagram:
-
-    def __init__(self, yao: tuple[Yao, Yao, Yao, Yao, Yao, Yao] | None = None):
-        if yao is None:
-            self._yao = self.from_three_coins().yao
-        elif len(yao) == 6:
-            self._yao = (Yao(yao[0]), Yao(yao[1]), Yao(yao[2]), Yao(yao[3]), Yao(yao[4]), Yao(yao[5]))
-        else:
-            raise ValueError(f"Invalid input {yao}")
-
-    def __repr__(self):
-        return "\n".join(repr(yao) for yao in self.yao[::-1])
-
-    @property
-    def yao(self) -> tuple[Yao, Yao, Yao, Yao, Yao, Yao]:
-        return self._yao
-
-    @property
-    def inner(self) -> Trigram:
-        return Trigram(self.yao[:3])
-
-    @property
-    def outer(self) -> Trigram:
-        return Trigram(self.yao[3:])
+    def get_transformed(self) -> "Hexagram":
+        return Hexagram(inner=self.inner.get_transformed(), outer=self.outer.get_transformed())
 
     @classmethod
-    def from_trigram(cls, trigram_inner: Trigram, trigram_outer: Trigram) -> "Hexagram":
-        inner_yaos = trigram_inner.yao
-        outer_yaos = trigram_outer.yao
-        return cls(inner_yaos + outer_yaos)
+    def from_lines(cls, lines: list[Line]) -> Self:
+        return cls(inner=Trigram(lines=lines[:3]), outer=Trigram(lines=lines[3:]))
+
+    @classmethod
+    def from_binary(cls, lines: list[int]) -> Self:
+        if len(lines) != 6:
+            raise ValueError("Hexagram should have exactly 6 lines")
+        return cls.from_lines(lines=[Line(status=LineStatus(i)) for i in lines])
 
     @classmethod
     def from_three_coins(cls) -> Self:
@@ -79,74 +42,48 @@ class Hexagram:
         zero head:   greater yang  太阳 (变爻)
         three heads: greater yin   太阴 (变爻)
         """
-        six_yaos: list[Yao] = []
-        for _ in range(6):
-            flip_result = sum((random.getrandbits(1), random.getrandbits(1), random.getrandbits(1)))
-            if flip_result in [0, 2]:
-                yao = Yao.Yang
-            elif flip_result in [1, 3]:
-                yao = Yao.Yin
-            else:
-                raise ValueError(f"Invalid flip result {flip_result}")  # should not enter here
-
-            if flip_result in [0, 3]:
-                yao.is_transform = True
-            else:
-                yao.is_transform = False
-            six_yaos.append(yao)
-        assert len(six_yaos) == 6
-        return cls((six_yaos[0], six_yaos[1], six_yaos[2], six_yaos[3], six_yaos[4], six_yaos[5]))
+        # 0: tail, 1: head
+        flip_results = [sum([1 - random.getrandbits(1) for _ in range(3)]) for _ in range(6)]
+        lines = [Line(status=LineStatus(res)) for res in flip_results]
+        return cls.from_lines(lines=lines)
 
     @classmethod
-    def from_shi_cao(cls) -> Self:
+    def random(cls) -> Self:
+        """Create a random  Hexagram instance. This will"""
+        return cls.from_lines(lines=[Line.random() for _ in range(6)])
+
+    @classmethod
+    def from_yarrow_stalks(cls) -> Self:
         """Create a new instance of the Hexagram class from ... (蓍草起卦)."""
-
-        yao_list = [cls.get_yao() for _ in range(6)]
-        six_yaos: list[Yao] = []
-        for result in yao_list:
-            if result in [7, 9]:
-                yao = Yao.Yang
-            elif result in [6, 8]:
-                yao = Yao.Yin
-            else:
-                raise ValueError(f"Invalid result {result}")
-
-            yao.is_transform = True if result in [6, 9] else False
-            six_yaos.append(yao)
-        assert len(six_yaos) == 6
-        return cls((six_yaos[0], six_yaos[1], six_yaos[2], six_yaos[3], six_yaos[4], six_yaos[5]))
+        # get_lines 6: old yin, 7: young yang, 8: young yin, 9: old yang
+        # status    0: old yin, 1: young yang, 2: young yin, 3: old yang
+        lines = [Line(status=LineStatus(cls.get_line() - 6)) for _ in range(6)]
+        return cls.from_lines(lines=lines)
 
     @staticmethod
-    def get_yao() -> int:
+    def get_line() -> int:
         total = 50 - 1  # 大衍之数五十，其用四十有九
-        yu_ce_1 = Hexagram.bian(total)
-        yu_ce_2 = Hexagram.bian(yu_ce_1)
-        yu_ce_3 = Hexagram.bian(yu_ce_2)
-        return yu_ce_3 // 4
+        remaining_stalks_1 = Hexagram.bian(total)
+        assert remaining_stalks_1 in [40, 44]
+        remaining_stalks_2 = Hexagram.bian(remaining_stalks_1)
+        assert remaining_stalks_2 in [32, 36, 40]
+        remaining_stalks_3 = Hexagram.bian(remaining_stalks_2)
+        return remaining_stalks_3 // 4
 
     @staticmethod
     def bian(num: int) -> int:
+        # Divide all stalks into 2 piles
         # 分而二以象两
         left = random.randint(1, num - 1)
         right = num - left
 
+        # Subtract a single stalk from left hand and put between little finger and ring finger
         # 挂一以象三
         x = 1
         left -= 1
 
+        # Get the remainder of the number of stalks in both piles divided by 4
         # 揲之以四以象四时
-        if left < 4:
-            y = left
-        else:
-            y = 4 if left % 4 == 0 else left % 4
-
-        if right < 4:
-            z = right
-        else:
-            if right % 4 == 0:
-                z = 4
-            else:
-                z = right % 4
-
-        ce = x + y + z
-        return num - ce
+        y = min(left, 4) if left < 4 else (4 if left % 4 == 0 else left % 4)
+        z = min(right, 4) if right < 4 else (4 if right % 4 == 0 else right % 4)
+        return num - x - y - z
