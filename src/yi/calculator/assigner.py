@@ -1,7 +1,7 @@
 # %%
 
+from yi.enum import HeavenlyStem
 from yi.model.hexagram import Hexagram, Trigram
-from yi.model.stem_branch import HeavenlyStem
 
 
 class HexagramAssigner:

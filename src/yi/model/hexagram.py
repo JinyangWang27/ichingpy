@@ -21,6 +21,9 @@ class Hexagram(BaseModel):
     def __repr__(self):
         return "\n".join(repr(line) for line in self.lines[::-1])
 
+    def __str__(self):
+        return repr(self)
+
     def get_transformed(self) -> "Hexagram":
         return Hexagram(inner=self.inner.get_transformed(), outer=self.outer.get_transformed())
 
@@ -87,3 +90,6 @@ class Hexagram(BaseModel):
         y = min(left, 4) if left < 4 else (4 if left % 4 == 0 else left % 4)
         z = min(right, 4) if right < 4 else (4 if right % 4 == 0 else right % 4)
         return num - x - y - z
+
+
+# %%

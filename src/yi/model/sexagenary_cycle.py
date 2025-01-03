@@ -1,6 +1,6 @@
 from typing import Any, Self
 
-from yi.model.stem_branch import EarthlyBranch, HeavenlyStem
+from yi.enum import EarthlyBranch, HeavenlyStem
 
 
 class SexagenaryCycle:

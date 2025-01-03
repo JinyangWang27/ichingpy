@@ -4,8 +4,7 @@ from typing import Self
 
 from pydantic import BaseModel
 
-from yi.enum.line_status import LineStatus
-from yi.model.stem_branch import EarthlyBranch, HeavenlyStem
+from yi.enum import EarthlyBranch, HeavenlyStem, LineStatus
 
 
 class LineTransformationError(Exception):

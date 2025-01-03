@@ -1,8 +1,8 @@
 import pytest
 
+from yi.enum import EarthlyBranch, HeavenlyStem
 from yi.enum.line_status import LineStatus
 from yi.model.line import Line, LineTransformationError
-from yi.model.stem_branch import EarthlyBranch, HeavenlyStem
 
 
 @pytest.mark.parametrize(
