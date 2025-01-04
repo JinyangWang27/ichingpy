@@ -28,11 +28,11 @@ def test_line_repr_with_stem():
 def test_line_repr_with_branch():
     line = Line(status=LineStatus.STATIC_YANG)
     line.branch = EarthlyBranch.Zi
-    assert repr(line) == "子 -----"
+    assert repr(line) == "子水 -----"
 
 
 def test_line_repr_with_both_stem_and_branch():
     line = Line(status=LineStatus.STATIC_YANG)
     line.stem = HeavenlyStem.Jia
     line.branch = EarthlyBranch.Zi
-    assert repr(line) == "甲 子 -----"
+    assert repr(line) == "甲 子水 -----"
