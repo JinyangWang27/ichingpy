@@ -1,7 +1,7 @@
 
 # 易经Python库
 
-[![pypi](https://img.shields.io/badge/pypi-v0.1.1-blue)](https://pypi.org/project/ichingpy/)
+[![pypi](https://img.shields.io/badge/pypi-v0.1-blue)](https://pypi.org/project/ichingpy/)
 [![license](https://img.shields.io/badge/license-MIT-g)]([LICENSE](https://github.com/JinyangWang27/ichingpy/blob/main/LICENSE))
 
 ```
@@ -31,10 +31,13 @@
 ### 干支算术运算
 
 干支各自支持算术运算，分别为模10以及模12的同余类 $\mathbb{Z}_{10}$ 与 $\mathbb{Z}_{12}$。需注意，严格来说干支都不具备群的代数结构，因为不满足单位元(identity element)条件。
+
+创建一个天干甲
 ```python
 >>> icp.HeavenlyStem.Jia + 1
 <HeavenlyStem.Yi: 2>
 
+天干甲加天干癸
 >>> gui = icp.HeavenlyStem.Gui
 >>> jia = icp.HeavenlyStem.Jia
 >>> jia + gui 

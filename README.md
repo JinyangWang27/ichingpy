@@ -1,8 +1,8 @@
 # I-Ching Python
 
-[汉语文档由此](README_CN.md)
+[汉语文档由此](https://github.com/JinyangWang27/ichingpy/blob/main/README_CN.md)
 
-[![pypi](https://img.shields.io/badge/pypi-v0.1.1-blue)](https://pypi.org/project/ichingpy/)
+[![pypi](https://img.shields.io/badge/pypi-v0.1-blue)](https://pypi.org/project/ichingpy/)
 [![license](https://img.shields.io/badge/license-MIT-g)]([LICENSE](https://github.com/JinyangWang27/ichingpy/blob/main/LICENSE))
 
 ## Description
