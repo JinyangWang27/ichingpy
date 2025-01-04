@@ -25,3 +25,57 @@
 3. 解释卦象含义（TODO）
 4. 根据易经进行占卜（增删卜易 TODO）
 
+
+## 简例
+
+### 干支算术运算
+
+干支各自支持算术运算，分别为模10以及模12的同余类 $\mathbb{Z}_{10}$ 与 $\mathbb{Z}_{12}$。需注意，严格来说干支都不具备群的代数结构，因为不满足单位元(identity element)条件。
+```python
+>>> icp.HeavenlyStem.Jia + 1
+<HeavenlyStem.Yi: 2>
+
+>>> gui = icp.HeavenlyStem.Gui
+>>> jia = icp.HeavenlyStem.Jia
+>>> jia + gui 
+<HeavenlyStem.Jia: 1>
+```
+
+干支组的数学运算
+```python
+>>> jia = icp.HeavenlyStem.Jia 
+>>> zi = icp.EarthlyBranch.Zi
+>>> jia_zi = icp.SexagenaryCycle(jia, zi)
+>>> jia_zi
+甲子
+>>> jia_zi+1
+乙丑
+>>> jia_zi+60
+甲子
+```
+
+### 装卦，纳干支
+创建一个天风姤卦，无动爻
+```python
+>>> gou = icp.Hexagram.from_binary([2, 1, 1, 1, 1, 1]) 
+>>> gou
+-----
+-----
+-----
+-----
+-----
+-- --
+```
+
+创建一个干支装卦器，装卦
+```python
+>>> assigner = icp.StemBranchAssigner()
+>>> assigner.assign(gou) 
+>>> gou
+壬 戌土 -----
+壬 申金 -----
+壬 午火 -----
+辛 酉金 -----
+辛 亥水 -----
+辛 丑土 -- --
+```

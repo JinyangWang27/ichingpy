@@ -43,4 +43,8 @@
         "--profile",
         "black"
     ],
+    "black-formatter.args": [
+        "--line-length",
+        "120"
+    ]
 }

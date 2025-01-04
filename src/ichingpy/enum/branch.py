@@ -1,6 +1,22 @@
 from typing import Self
 
+from ichingpy.enum.five_phase import FivePhase
 from ichingpy.enum.mixed_enum import MixEnum
+
+PHASE_MAPPING: dict[str, FivePhase] = {
+    "Zi": FivePhase.WATER,
+    "Chou": FivePhase.EARTH,
+    "Yin": FivePhase.WOOD,
+    "Mao": FivePhase.WOOD,
+    "Chen": FivePhase.EARTH,
+    "Si": FivePhase.FIRE,
+    "Wu": FivePhase.FIRE,
+    "Wei": FivePhase.EARTH,
+    "Shen": FivePhase.METAL,
+    "You": FivePhase.METAL,
+    "Xu": FivePhase.EARTH,
+    "Hai": FivePhase.WATER,
+}
 
 
 class EarthlyBranch(MixEnum):
@@ -18,6 +34,21 @@ class EarthlyBranch(MixEnum):
     You = 10, "酉"
     Xu = 11, "戌"
     Hai = 12, "亥"
+
+    @property
+    def phase(self) -> FivePhase:
+        """Return the FivePhases associated with the EarthlyBranch."""
+        return PHASE_MAPPING[self.name]
+
+    @property
+    def label(self) -> str:
+        """Return the label of the EarthlyBranch."""
+        return f"{self._label}{self.phase.label}"
+
+    @label.setter
+    def label(self, value: str) -> None:
+        """Sets the label of the EarthlyBranch."""
+        self._label = value
 
     def __add__(self, other: Self | int) -> "EarthlyBranch":
         """Add an integer or an EarthlyBranch to the EarthlyBranch.

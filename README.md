@@ -17,6 +17,7 @@ Features
 3. performing divination based on the I-Ching (TODO)
 4. arithmetic operations on Heavenly Stems and Earthly Branches (干支)
 
+A few implementations are in Chinese, as the author is not satisfied with their current translation. In the future, both Chinese and English will be supported.
 
 ## Installation
 
@@ -116,10 +117,10 @@ hexagram.inner.stem
 >>> assigner = icp.StemBranchAssigner()
 >>> assigner.assign(gou) 
 >>> gou
-壬 戌 -----
-壬 申 -----
-壬 午 -----
-辛 酉 -----
-辛 亥 -----
-辛 丑 -- --
+壬 戌土 -----
+壬 申金 -----
+壬 午火 -----
+辛 酉金 -----
+辛 亥水 -----
+辛 丑土 -- --
 ```
