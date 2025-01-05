@@ -23,12 +23,18 @@ def test_line_repr_with_stem():
     line = Line(status=LineStatus.STATIC_YANG)
     line.stem = HeavenlyStem.Jia
     assert repr(line) == "甲 -----"
+    line.set_language("en")
+    assert repr(line) == "Jia  -----"
+    line.set_language("zh")
 
 
 def test_line_repr_with_branch():
     line = Line(status=LineStatus.STATIC_YANG)
     line.branch = EarthlyBranch.Zi
     assert repr(line) == "子水 -----"
+    line.set_language("en")
+    assert repr(line) == "Zi  WATER -----"
+    line.set_language("zh")
 
 
 def test_line_repr_with_both_stem_and_branch():
@@ -36,3 +42,6 @@ def test_line_repr_with_both_stem_and_branch():
     line.stem = HeavenlyStem.Jia
     line.branch = EarthlyBranch.Zi
     assert repr(line) == "甲 子水 -----"
+    line.set_language("en")
+    assert repr(line) == "Jia  Zi  WATER -----"
+    line.set_language("zh")
