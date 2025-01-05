@@ -50,6 +50,10 @@ class EarthlyBranch(MixEnum):
         """Sets the label of the EarthlyBranch."""
         self._label = value
 
+    @property
+    def name_en(self) -> str:
+        return f"{self.name.ljust(4)}{self.phase.name.ljust(5)}"
+
     def __add__(self, other: Self | int) -> "EarthlyBranch":
         """Add an integer or an EarthlyBranch to the EarthlyBranch.
 

@@ -34,3 +34,4 @@ def test_line_display_language_setter():
 
     icp.set_language("en")
     assert icp.Line.display_language == Language.ENGLISH
+    icp.set_language("zh")

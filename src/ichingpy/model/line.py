@@ -33,7 +33,7 @@ class Line(BaseModel):
         match self.display_language:
             case Language.ENGLISH:
                 stem = f"{self.stem.name.ljust(4)} " if has_stem else ""
-                branch = f"{self.branch.name.ljust(4)} " if has_branch else ""
+                branch = f"{self.branch.name_en.ljust(4)} " if has_branch else ""
             case Language.CHINESE:
                 stem = f"{self.stem.label} " if has_stem else ""
                 branch = f"{self.branch.label} " if has_branch else ""
