@@ -1,10 +1,11 @@
 # %%
 import random
-from typing import Self
+from typing import ClassVar, Self
 
 from pydantic import BaseModel
 
 from ichingpy.enum import EarthlyBranch, HeavenlyStem, LineStatus
+from ichingpy.enum.language import Language
 
 
 class LineTransformationError(Exception):
@@ -13,6 +14,8 @@ class LineTransformationError(Exception):
 
 class Line(BaseModel):
     """A Line (爻) of a trigram or a hexagram in the I Ching"""
+
+    display_language: ClassVar[Language] = Language.CHINESE
 
     status: LineStatus
 
@@ -81,6 +84,11 @@ class Line(BaseModel):
     def random(cls) -> Self:
         """Create a random Line instance."""
         return cls(status=LineStatus(random.getrandbits(2)))
+
+    @classmethod
+    def set_language(cls, language: str):
+        """Set the display language for the Line class."""
+        cls.display_language = Language(language)
 
 
 # %%
