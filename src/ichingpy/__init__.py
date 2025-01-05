@@ -11,4 +11,5 @@ __all__ = [
     "Trigram",
     "SexagenaryCycle",
     "StemBranchAssigner",
+    "set_language",
 ]
