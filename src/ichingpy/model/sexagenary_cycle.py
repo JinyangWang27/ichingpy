@@ -1,3 +1,4 @@
+# %%
 from typing import Any, Self
 
 from ichingpy.enum import EarthlyBranch, HeavenlyStem
@@ -31,7 +32,7 @@ class SexagenaryCycle:
         Args:
             value (int): The integer value
         """
-        stem = HeavenlyStem((value - 1) % 12 + 1)
+        stem = HeavenlyStem((value - 1) % 10 + 1)
         branch = EarthlyBranch((value - 1) % 12 + 1)
         return cls(stem, branch)
 
@@ -93,3 +94,6 @@ class SexagenaryCycle:
 
     def __rsub__(self, other: Self | int) -> "SexagenaryCycle":
         return self.__sub__(other)
+
+
+# %%

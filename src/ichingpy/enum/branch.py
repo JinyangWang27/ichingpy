@@ -43,12 +43,17 @@ class EarthlyBranch(MixEnum):
     @property
     def label(self) -> str:
         """Return the label of the EarthlyBranch."""
-        return f"{self._label}{self.phase.label}"
+        return f"{self._label}"
 
     @label.setter
     def label(self, value: str) -> None:
         """Sets the label of the EarthlyBranch."""
         self._label = value
+
+    @property
+    def label_with_phase(self) -> str:
+        """Return the label of the EarthlyBranch."""
+        return f"{self._label}{self.phase.label}"
 
     @property
     def name_en(self) -> str:

@@ -30,7 +30,7 @@ def test_sexagenary_cycle():
     jia_zi = SexagenaryCycle(HeavenlyStem.Jia, EarthlyBranch.Zi)
     assert jia_zi.stem == HeavenlyStem.Jia
     assert jia_zi.branch == EarthlyBranch.Zi
-    assert repr(jia_zi) == "甲子水"
+    assert repr(jia_zi) == "甲子"
     assert jia_zi + 1 == SexagenaryCycle(HeavenlyStem.Yi, EarthlyBranch.Chou)
     assert jia_zi + 60 == jia_zi
     assert 60 + jia_zi == jia_zi
