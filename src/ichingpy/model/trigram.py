@@ -1,3 +1,4 @@
+# %%
 from typing import ClassVar, Self
 
 from pydantic import BaseModel, field_validator
@@ -13,8 +14,8 @@ class Trigram(BaseModel):
     # 0: changing yin, 1: static yang, 2: static yin, 3: changing yang
     NAME_MAP: ClassVar[dict[tuple[int, int, int], str]] = {
         (1, 1, 1): "乾",
-        (1, 1, 0): "兌",
-        (1, 0, 1): "離",
+        (1, 1, 0): "兑",
+        (1, 0, 1): "离",
         (1, 0, 0): "震",
         (0, 1, 1): "巽",
         (0, 1, 0): "坎",
@@ -81,3 +82,13 @@ class Trigram(BaseModel):
 
     def __repr__(self):
         return "\n".join(repr(line) for line in self.lines[::-1])
+
+    @classmethod
+    def from_pre_trigram_number(cls, trigram_number: int) -> Self:
+        # 给定先天卦数，返回对应的八卦
+        assert 1 <= trigram_number <= 8
+        name_map = {v: k for k, v in cls.NAME_MAP.items()}
+        name_list = list(name_map.keys())
+        trigram_name = name_list[trigram_number - 1]
+        lines_number = list(map(lambda x: 2 if x == 0 else x, name_map[trigram_name]))
+        return cls(lines=[Line(status=LineStatus(i)) for i in lines_number])

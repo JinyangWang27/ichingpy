@@ -57,7 +57,7 @@ class EarthlyBranch(MixEnum):
 
     @property
     def name_en(self) -> str:
-        return f"{self.name.ljust(4)}{self.phase.name.ljust(5)}"
+        return f"{self.name.ljust(4)} ({str(self.value).ljust(2)}) {self.phase.name.ljust(5)}"
 
     def __add__(self, other: Self | int) -> "EarthlyBranch":
         """Add an integer or an EarthlyBranch to the EarthlyBranch.

@@ -2,10 +2,13 @@
 from typing import Any, Self
 
 from ichingpy.enum import EarthlyBranch, HeavenlyStem
+from ichingpy.enum.language import Language
 
 
 class SexagenaryCycle:
     """The SexagenaryCycle (干支) class."""
+
+    display_language = Language.CHINESE
 
     def __init__(self, stem: HeavenlyStem, branch: EarthlyBranch):
         """Initialize a new instance of the SexagenaryCycle class.
@@ -42,6 +45,8 @@ class SexagenaryCycle:
         Returns:
             str: A string representation of the SexagenaryCycle.
         """
+        if self.display_language is Language.ENGLISH:
+            return f"{self.stem.name}({self.stem.value}) {self.branch.name}({self.branch.value})"
         return f"{self.stem.label}{self.branch.label}"
 
     def __int__(self) -> int:
@@ -94,6 +99,15 @@ class SexagenaryCycle:
 
     def __rsub__(self, other: Self | int) -> "SexagenaryCycle":
         return self.__sub__(other)
+
+    @classmethod
+    def set_language(cls, language: str) -> None:
+        """Set the display language of the SexagenaryCycle.
+
+        Args:
+            language (Language): The display language to set.
+        """
+        cls.display_language = Language(language)
 
 
 # %%

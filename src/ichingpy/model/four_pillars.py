@@ -15,12 +15,15 @@ class FourPillars:
         self.day = day
         self.hour = hour
 
-    def get_pillar(self):
+    def get_pillars(self):
         """Get the Four Pillars of Destiny."""
         return f"{self.year}年 {self.month}月 {self.day}日 {self.hour}时"
 
+    def __repr__(self) -> str:
+        return f"{repr(self.year)} {repr(self.month)} {repr(self.day)} {repr(self.hour)}"
+
     @classmethod
-    def from_datetime(cls, dt: datetime) -> Self:
+    def from_datetime(cls, dt: datetime, month_adjust: int | None = None) -> Self:
         """Create a new instance of the FourPillars class from a datetime object.
 
         Args:
@@ -28,6 +31,10 @@ class FourPillars:
         """
         year_pillar = cls.get_year_pillar(dt)
         month_pillar = cls.get_month_pillar(dt, year_pillar.stem)
+        if month_adjust:
+            if dt.month == 2:
+                year_pillar += month_adjust
+            month_pillar += month_adjust
         day_pillar = cls.get_day_pillar(dt)
         hour_pillar = cls.get_hour_pillar(dt, day_pillar.stem)
         return cls(year_pillar, month_pillar, day_pillar, hour_pillar)
