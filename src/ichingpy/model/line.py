@@ -36,7 +36,7 @@ class Line(BaseModel):
                 branch = f"{self.branch.name_en.ljust(4)} " if has_branch else ""
             case Language.CHINESE:
                 stem = f"{self.stem.label} " if has_stem else ""
-                branch = f"{self.branch.label} " if has_branch else ""
+                branch = f"{self.branch.label_with_phase} " if has_branch else ""
 
         representation = f"{stem}{branch}{representation}"
         return representation
