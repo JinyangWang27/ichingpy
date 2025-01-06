@@ -1,4 +1,3 @@
-# %%
 from datetime import datetime
 from typing import Self
 
@@ -76,7 +75,7 @@ class FourPillars:
             case HeavenlyStem.Wu | HeavenlyStem.Gui:  # 5, 10 -> 1
                 first_stem = HeavenlyStem.Jia  # 若问戊癸何方法，甲寅之上好推求
 
-        stem = first_stem + (month_pillar_int + 12) % 12 - 3
+        stem = first_stem + (month_pillar_int + 9) % 12
         return SexagenaryCycle(stem, branch)
 
     @staticmethod
@@ -111,9 +110,9 @@ class FourPillars:
         Args:
             dt (datetime): The datetime object.
         """
-        reference_date = datetime(2000, 2, 4, 1, 0, 0)
+        reference_date = datetime(2000, 2, 4, 0, 0, 0)  # this is not precise,
         reference_day = SexagenaryCycle(stem=HeavenlyStem.Ren, branch=EarthlyBranch.Chen)
-        return reference_day + (dt - reference_date).days + 1
+        return reference_day + (dt - reference_date).days
 
     @staticmethod
     def get_hour_pillar(dt: datetime, day_stem: HeavenlyStem) -> SexagenaryCycle:
@@ -144,6 +143,3 @@ class FourPillars:
         stem = HeavenlyStem(first_stem + hour_int - 1)
         branch = EarthlyBranch(hour_int)
         return SexagenaryCycle(stem, branch)
-
-
-# %%
