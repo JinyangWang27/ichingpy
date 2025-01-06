@@ -1,10 +1,12 @@
 # %%
 import random
+from datetime import datetime
 from typing import Self
 
 from pydantic import BaseModel
 
 from ichingpy.enum.line_status import LineStatus
+from ichingpy.model.four_pillars import FourPillars
 from ichingpy.model.line import Line
 from ichingpy.model.trigram import Trigram
 
@@ -54,6 +56,31 @@ class Hexagram(BaseModel):
     def random(cls) -> Self:
         """Create a random  Hexagram instance. This will"""
         return cls.from_lines(lines=[Line.random() for _ in range(6)])
+
+    @classmethod
+    def from_datetime(cls, dt: datetime) -> Self:
+        four_pillars = FourPillars.from_datetime(dt)
+        year = four_pillars.year.branch.value
+        month = four_pillars.month.branch.value
+        day = four_pillars.day.branch.value
+        hour = four_pillars.hour.branch.value
+
+        remainder_ymd = (year + month + day) % 8
+        remainder_ymd = 8 if remainder_ymd == 0 else remainder_ymd
+
+        remainder_ymdh = (year + month + day + hour) % 8
+        remainder_ymdh = 8 if remainder_ymdh == 0 else remainder_ymdh
+
+        outer_trigram_lines = Trigram.from_pre_trigram_number(remainder_ymd).lines
+        inner_trigram_lines = Trigram.from_pre_trigram_number(remainder_ymdh).lines
+        lines = inner_trigram_lines + outer_trigram_lines
+
+        line_to_transform_int = (year + month + day + hour) % 6
+        if line_to_transform_int == 0:
+            line_to_transform_int = 6
+        line_to_transform_int -= 1
+        lines[line_to_transform_int] = lines[line_to_transform_int].transform()
+        return cls.from_lines(lines=lines)
 
     @classmethod
     def from_yarrow_stalks(cls) -> Self:

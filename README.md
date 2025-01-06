@@ -1,9 +1,8 @@
 # I-Ching Python
-
-[汉语文档由此](https://github.com/JinyangWang27/ichingpy/blob/main/README_CN.md)
-
 [![pypi](https://img.shields.io/badge/pypi-v0.1-blue)](https://pypi.org/project/ichingpy/)
 [![license](https://img.shields.io/badge/license-MIT-g)]([LICENSE](https://github.com/JinyangWang27/ichingpy/blob/main/LICENSE))
+
+[汉语文档由此](https://github.com/JinyangWang27/ichingpy/blob/main/README_CN.md)
 
 ## Description
 I-Ching objects construction using Python type hints.
@@ -27,6 +26,7 @@ A few implementations are in Chinese, as the author is not satisfied with their 
 
 ```python
 import ichingpy as icp
+icp.set_language("en")
 ```
 <!-- 
 Create a Line  (爻)
@@ -98,11 +98,11 @@ hexagram.inner.stem
 >>> zi = icp.EarthlyBranch.Zi
 >>> jia_zi = icp.SexagenaryCycle(jia, zi)
 >>> jia_zi
-甲子
+Jia Zi
 >>> jia_zi+1
-乙丑
+Yi Chou
 >>> jia_zi+60
-甲子
+Jia Zi
 ```
 #### Assign Stem and Branch to a hexagram (装卦、纳甲)
 ```python
@@ -117,10 +117,10 @@ hexagram.inner.stem
 >>> assigner = icp.StemBranchAssigner()
 >>> assigner.assign(gou) 
 >>> gou
-壬 戌土 -----
-壬 申金 -----
-壬 午火 -----
-辛 酉金 -----
-辛 亥水 -----
-辛 丑土 -- --
+Ren  (9) Xu   (11) EARTH -----
+Ren  (9) Shen (9 ) METAL -----
+Ren  (9) Wu   (7 ) FIRE  -----
+Xin  (8) You  (10) METAL -----
+Xin  (8) Hai  (12) WATER -----
+Xin  (8) Chou (2 ) EARTH -- --
 ```

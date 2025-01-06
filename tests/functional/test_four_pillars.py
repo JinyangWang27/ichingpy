@@ -38,4 +38,8 @@ def test_four_pillars_get_day_pillar(dt: datetime, day_str: str):
 )
 def test_four_pillars(dt: datetime, pillar_str: str):
     # add more test cases
-    assert FourPillars.from_datetime(dt).get_pillar() == pillar_str
+    assert FourPillars.from_datetime(dt).get_pillars() == pillar_str
+
+
+def test_four_pillars_month_adjust():
+    assert repr(FourPillars.from_datetime(datetime(2025, 2, 3, 11, 0, 0), month_adjust=1)) == "乙巳 戊寅 癸卯 戊午"

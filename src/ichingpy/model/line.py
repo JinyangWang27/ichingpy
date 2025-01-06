@@ -1,4 +1,3 @@
-# %%
 import random
 from typing import ClassVar, Self
 
@@ -32,7 +31,7 @@ class Line(BaseModel):
         has_branch = hasattr(self, "_branch")
         match self.display_language:
             case Language.ENGLISH:
-                stem = f"{self.stem.name.ljust(4)} " if has_stem else ""
+                stem = f"{self.stem.name.ljust(4)} ({self.stem.value}) " if has_stem else ""
                 branch = f"{self.branch.name_en.ljust(4)} " if has_branch else ""
             case Language.CHINESE:
                 stem = f"{self.stem.label} " if has_stem else ""
@@ -71,6 +70,17 @@ class Line(BaseModel):
             case LineStatus.CHANGING_YIN:
                 return Line(status=LineStatus.STATIC_YANG)
 
+    def transform(self) -> "Line":
+        """Create a transform line from a static line."""
+        match self.status:
+            case LineStatus.CHANGING_YANG | LineStatus.CHANGING_YIN:
+                raise LineTransformationError("Line is already static")
+            case LineStatus.STATIC_YANG:
+                return Line(status=LineStatus.CHANGING_YANG)
+            case LineStatus.STATIC_YIN:
+                return Line(status=LineStatus.CHANGING_YIN)
+        return self
+
     @property
     def stem(self) -> HeavenlyStem:
         return self._stem
@@ -96,6 +106,3 @@ class Line(BaseModel):
     def set_language(cls, language: str):
         """Set the display language for the Line class."""
         cls.display_language = Language(language)
-
-
-# %%
