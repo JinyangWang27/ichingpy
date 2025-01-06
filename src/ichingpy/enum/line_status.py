@@ -2,8 +2,7 @@ from enum import Enum
 
 
 class LineStatus(Enum):
-    """
-    An Enum representing the status of a line in a hexagram.
+    """An Enum representing the status of a line in a hexagram.
 
     Attributes:
         CHANGING_YANG (int): A solid line that is changing to a broken line.

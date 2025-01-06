@@ -9,7 +9,7 @@ from ichingpy.model.line import Line
 
 
 class Trigram(BaseModel):
-    """A Trigram (卦) in the I Ching"""
+    """A Trigram (八卦) in the I Ching"""
 
     # 0: changing yin, 1: static yang, 2: static yin, 3: changing yang
     NAME_MAP: ClassVar[dict[tuple[int, int, int], str]] = {

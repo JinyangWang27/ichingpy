@@ -1,4 +1,3 @@
-# %%
 import random
 from datetime import datetime
 from typing import Self
@@ -12,12 +11,16 @@ from ichingpy.model.trigram import Trigram
 
 
 class Hexagram(BaseModel):
+    """A Hexagram (64卦之一) consists of an inner Trigram (内卦) and an outer Trigram (外卦)."""
 
     inner: Trigram
     outer: Trigram
 
     @property
     def lines(self) -> list[Line]:
+        """Get the lines of the Hexagram.
+        返回卦之六爻。
+        """
         return self.inner.lines + self.outer.lines
 
     def __repr__(self):
@@ -27,14 +30,17 @@ class Hexagram(BaseModel):
         return repr(self)
 
     def get_transformed(self) -> "Hexagram":
+        """Get the transformed Hexagram (变卦)."""
         return Hexagram(inner=self.inner.get_transformed(), outer=self.outer.get_transformed())
 
     @classmethod
     def from_lines(cls, lines: list[Line]) -> Self:
+        """Create a new instance of the Hexagram class from a list of Lines."""
         return cls(inner=Trigram(lines=lines[:3]), outer=Trigram(lines=lines[3:]))
 
     @classmethod
     def from_binary(cls, lines: list[int]) -> Self:
+        """Create a new instance of the Hexagram class from a list of binary integers."""
         if len(lines) != 6:
             raise ValueError("Hexagram should have exactly 6 lines")
         return cls.from_lines(lines=[Line(status=LineStatus(i)) for i in lines])
@@ -59,6 +65,12 @@ class Hexagram(BaseModel):
 
     @classmethod
     def from_datetime(cls, dt: datetime) -> Self:
+        """Create a new instance of the Hexagram class from a datetime object.
+        八字起卦：
+        1. 年月日三支之和除以8取余为外卦之数，余数0作8
+        2. 年月日时四支之和除以8取余为内卦之数，余数0作8
+        3. 年月日时四支之和除以6取余为变爻之数，余数0作6
+        """
         four_pillars = FourPillars.from_datetime(dt)
         year = four_pillars.year.branch.value
         month = four_pillars.month.branch.value
@@ -117,6 +129,3 @@ class Hexagram(BaseModel):
         y = min(left, 4) if left < 4 else (4 if left % 4 == 0 else left % 4)
         z = min(right, 4) if right < 4 else (4 if right % 4 == 0 else right % 4)
         return num - x - y - z
-
-
-# %%

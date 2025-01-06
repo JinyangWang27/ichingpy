@@ -1,4 +1,3 @@
-# %%
 from ichingpy.enum.mixed_enum import MixEnum
 
 # Class-level mapping for "generates", Enum does not allow for ClassVar...

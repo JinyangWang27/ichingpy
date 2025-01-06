@@ -61,7 +61,9 @@ class Line(BaseModel):
         return True if self.status in [LineStatus.CHANGING_YIN, LineStatus.CHANGING_YANG] else False
 
     def get_transformed(self) -> "Line":
-        """Get the transformed Line, which is always a static line"""
+        """Get the transformed Line, which is always a static line
+        只作用于动爻，返回变爻
+        """
         match self.status:
             case LineStatus.STATIC_YANG | LineStatus.STATIC_YIN:
                 raise LineTransformationError("Line is already static")
@@ -71,7 +73,9 @@ class Line(BaseModel):
                 return Line(status=LineStatus.STATIC_YANG)
 
     def transform(self) -> "Line":
-        """Create a transform line from a static line."""
+        """Create a transform line from a static line.
+        只作用与静爻，返回阴阳与自身相同之动爻。
+        """
         match self.status:
             case LineStatus.CHANGING_YANG | LineStatus.CHANGING_YIN:
                 raise LineTransformationError("Line is already static")
@@ -83,18 +87,22 @@ class Line(BaseModel):
 
     @property
     def stem(self) -> HeavenlyStem:
+        """The HeavenlyStem associated with the Line."""
         return self._stem
 
     @stem.setter
     def stem(self, value: HeavenlyStem) -> None:
+        """Set the HeavenlyStem associated with the Line."""
         self._stem = value
 
     @property
     def branch(self) -> EarthlyBranch:
+        """The EarthlyBranch associated with the Line."""
         return self._branch
 
     @branch.setter
     def branch(self, value: EarthlyBranch) -> None:
+        """Set the EarthlyBranch associated with the Line."""
         self._branch = value
 
     @classmethod

@@ -22,15 +22,17 @@ class StemBranchAssigner:
         self.assign_branches(hexagram)
 
     def assign_stems(self, hexagram: Hexagram):
-
+        """Assign stems to the both inner and outer trigrams of the hexagram."""
         self._assign_stems_for_trigram(hexagram.outer, inner=False)
         self._assign_stems_for_trigram(hexagram.inner, inner=True)
 
     def assign_branches(self, hexagram: Hexagram):
+        """Assign branches to the both inner and outer trigrams of the hexagram."""
         self._assign_branches_for_trigram(hexagram.outer, inner=False)
         self._assign_branches_for_trigram(hexagram.inner, inner=True)
 
     def _assign_stems_for_trigram(self, trigram: Trigram, inner: bool):
+        """Assign stems to the trigram based on the trigram's value."""
         # 乾内甲外壬，艮丙坎戊震庚；
         # 坤内乙外癸，兑丁离己巽辛
         match tuple(v % 2 for v in trigram.value):
@@ -54,7 +56,7 @@ class StemBranchAssigner:
                 raise ValueError(f"Invalid trigram {trigram.value}")
 
     def _assign_branches_for_trigram(self, trigram: Trigram, inner: bool):
-
+        """Assign branches to the trigram based on the trigram's value."""
         # trigram_values = tuple(v % 2 for v in trigram.value) # linter is not smart enough...
         v1, v2, v3 = trigram.value
         trigram_values = (v1 % 2, v2 % 2, v3 % 2)
