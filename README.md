@@ -1,5 +1,6 @@
 # I-Ching Python
 [![pypi](https://img.shields.io/badge/pypi-v0.1-blue)](https://pypi.org/project/ichingpy/)
+[![codecov](https://codecov.io/gh/JinyangWang27/ichingpy/branch/main/graph/badge.svg?token=T27TSAL7BC)](https://codecov.io/gh/JinyangWang27/ichingpy)
 [![license](https://img.shields.io/badge/license-MIT-g)]([LICENSE](https://github.com/JinyangWang27/ichingpy/blob/main/LICENSE))
 
 [汉语文档由此](https://github.com/JinyangWang27/ichingpy/blob/main/README_CN.md)
