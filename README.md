@@ -4,6 +4,7 @@
 [![license](https://img.shields.io/badge/license-MIT-g)]([LICENSE](https://github.com/JinyangWang27/ichingpy/blob/main/LICENSE))
 
 [汉语文档由此](https://github.com/JinyangWang27/ichingpy/blob/main/README_CN.md)
+[Foreword by Carl Gustav Jung](https://github.com/JinyangWang27/ichingpy/blob/main/docs/books/en/RichardWilhelm/foreword_CG_Jung.md)
 
 ## Description
 I-Ching objects construction using Python type hints.
