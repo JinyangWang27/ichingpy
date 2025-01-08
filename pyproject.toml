@@ -4,15 +4,13 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "ichingpy"
-version = "0.1.6"
+version = "0.1.7"
 requires-python = ">=3.10"
-description = ""
+description = "I-Ching objects construction using Python type hints."
 readme = "README.md"
-
 authors = [{name = "Jinyang Wang", email = "jinyang.wang27@outlook.com"}]
-
+license = {text = "MIT"}
 dependencies = ["pydantic"]
-
 [project.urls]
 Homepage = "https://github.com/JinyangWang27/ichingpy"
 
