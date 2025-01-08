@@ -116,8 +116,8 @@ Jia Zi
 -----
 -----
 -- --
->>> assigner = icp.StemBranchAssigner()
->>> assigner.assign(gou) 
+>>> assigner = icp.SixLinesDivinationEngine()
+>>> assigner.execute(gou) 
 >>> gou
 Ren  (9) Xu   (11) EARTH -----
 Ren  (9) Shen (9 ) METAL -----

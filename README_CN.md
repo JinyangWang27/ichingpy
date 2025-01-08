@@ -37,6 +37,11 @@
 import ichingpy as icp
 ```
 
+如遇命令行界面汉字显示问题，使用[chcp](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/chcp)命令
+> chcp 936
+
+切换显示语言至汉语。
+
 ### 公历（格里历）转八字
 
 
@@ -46,6 +51,7 @@ import ichingpy as icp
 >>> ba_zi.get_pillars()
 '庚辰年 癸未月 甲戌日 庚午时'
 ```
+
 一个四柱 (FourPillars) 对象也有自己的字符串表示形式
 ```python
 >>> ba_zi
@@ -119,8 +125,8 @@ icp.Hexagram.from_three_coins()
 
 创建一个干支装卦器，装卦
 ```python
->>> assigner = icp.StemBranchAssigner()
->>> assigner.assign(gou) 
+>>> assigner = icp.SixLinesDivinationEngine()
+>>> assigner.execute(gou) 
 >>> gou
 壬 戌土 -----
 壬 申金 -----
