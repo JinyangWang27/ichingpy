@@ -28,6 +28,10 @@
 3. 解释卦象含义（TODO）
 4. 根据易经进行占卜（增删卜易 TODO）
 
+## 安装
+
+> pip install ichingpy
+
 
 ## 简例
 
