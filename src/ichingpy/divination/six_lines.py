@@ -1,10 +1,13 @@
+from ichingpy.divination.base import DivinationEngineBase
 from ichingpy.enum import HeavenlyStem
 from ichingpy.enum.branch import EarthlyBranch
 from ichingpy.model.hexagram import Hexagram, Trigram
 
 
-class StemBranchAssigner:
-    """Class to assign stems and branches to a hexagram."""
+class SixLinesDivinationEngine(DivinationEngineBase):
+    """Class to assign stems and branches to a hexagram.
+    京房六爻 装卦器
+    """
 
     FIRST_BRANCH_MAPPING = {
         (1, 1, 1): EarthlyBranch.Zi,  # 乾 1 (remainder of sum modulo 2)
@@ -17,7 +20,7 @@ class StemBranchAssigner:
         (1, 1, 0): EarthlyBranch.Si,  # 兌 0
     }
 
-    def assign(self, hexagram: Hexagram):
+    def execute(self, hexagram: Hexagram):
         self.assign_stems(hexagram)
         self.assign_branches(hexagram)
 

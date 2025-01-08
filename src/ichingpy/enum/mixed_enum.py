@@ -17,24 +17,6 @@ class MixEnum(Enum):
         obj.label = label
         return obj
 
-    @classmethod
-    def _missing_(cls, value: object):
-        """Return an Enum member matching the provided label, or invoke the superclass's _missing_.
-
-        This method extends Enum's functionality to allow lookup by string label if the direct value
-        does not match an Enum member.
-
-        Args:
-            value (object): The value or label to look up in the Enum.
-
-        Returns:
-            Enum: The Enum member if found by label, otherwise the result from superclass's _missing_ method.
-        """
-        for member in cls:
-            if member.label == value:
-                return member
-        return super()._missing_(value)
-
     @property
     def label(self) -> str:
         """str: Represents the string label of the Enum member."""

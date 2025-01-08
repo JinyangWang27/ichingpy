@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "ichingpy"
-version = "0.1.5"
+version = "0.1.6"
 requires-python = ">=3.10"
 description = ""
 readme = "README.md"
@@ -13,6 +13,8 @@ authors = [{name = "Jinyang Wang", email = "jinyang.wang27@outlook.com"}]
 
 dependencies = ["pydantic"]
 
+[project.urls]
+Homepage = "https://github.com/JinyangWang27/ichingpy"
 
 [project.optional-dependencies]
 dev = [

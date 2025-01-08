@@ -45,3 +45,17 @@ def test_line_repr_with_both_stem_and_branch():
     line.set_language("en")
     assert repr(line) == "Jia  (1) Zi   (1 ) WATER -----"
     line.set_language("zh")
+
+
+def test_changing_line_cannot_transform():
+    line = Line(status=LineStatus.CHANGING_YANG)
+    with pytest.raises(LineTransformationError):
+        _ = line.transform()
+
+
+def test_static_line_transform():
+    line = Line(status=LineStatus.STATIC_YANG)
+    assert line.transform().status == LineStatus.CHANGING_YANG
+
+    line = Line(status=LineStatus.STATIC_YIN)
+    assert line.transform().status == LineStatus.CHANGING_YIN

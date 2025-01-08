@@ -4,6 +4,7 @@
 [![license](https://img.shields.io/badge/license-MIT-g)]([LICENSE](https://github.com/JinyangWang27/ichingpy/blob/main/LICENSE))
 
 [汉语文档由此](https://github.com/JinyangWang27/ichingpy/blob/main/README_CN.md)
+
 [Foreword by Carl Gustav Jung](https://github.com/JinyangWang27/ichingpy/blob/main/docs/books/en/RichardWilhelm/foreword_CG_Jung.md)
 
 ## Description
@@ -13,12 +14,11 @@ Pattern-based implementation without hard-coded mappings. Define how philosophic
 
 Features
 
-1. generating hexagrams using multiple methods, 
-2. interpreting their meanings   (TODO)
-3. performing divination based on the I-Ching (TODO)
-4. arithmetic operations on Heavenly Stems and Earthly Branches (干支)
-
-A few implementations are in Chinese, as the author is not satisfied with their current translation. In the future, both Chinese and English will be supported.
+1. Generating hexagrams using multiple methods (yarrow stalks, three coins, datetime), 
+2. Arithmetic operations on Heavenly Stems and Earthly Branches (干支)
+3. Multi-language support (Chinese and English)
+3. Interpreting meanings of hexagrams   (TODO)
+4. Performing divination based on the I-Ching (TODO)
 
 ## Installation
 

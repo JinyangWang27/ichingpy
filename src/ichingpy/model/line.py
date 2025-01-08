@@ -83,7 +83,6 @@ class Line(BaseModel):
                 return Line(status=LineStatus.CHANGING_YANG)
             case LineStatus.STATIC_YIN:
                 return Line(status=LineStatus.CHANGING_YIN)
-        return self
 
     @property
     def stem(self) -> HeavenlyStem:

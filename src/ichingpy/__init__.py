@@ -1,4 +1,4 @@
-from ichingpy.assigners import *
+from ichingpy.divination import *
 from ichingpy.enum import *
 from ichingpy.model import *
 
@@ -17,7 +17,7 @@ __all__ = [
     "Hexagram",
     "Trigram",
     "SexagenaryCycle",
-    "StemBranchAssigner",
+    "SixLinesDivinationEngine",
     "FourPillars",
     "set_language",
 ]

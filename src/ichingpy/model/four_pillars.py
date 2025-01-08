@@ -47,12 +47,14 @@ class FourPillars:
             dt (datetime): The datetime object.
         """
         year = dt.year
-        if year > 0:
-            year_pillar_int = (year - 3) % 60
-        elif year < 0:
-            year_pillar_int = 60 - (-year + 2) % 60
-        else:
-            raise ValueError("Year cannot be 0.")
+        year_pillar_int = (year - 3) % 60
+        # It should also work for BC dates, but datetime does not support that
+        # if year > 0:
+        #     year_pillar_int = (year - 3) % 60
+        # elif year < 0:
+        #     year_pillar_int = 60 - (-year + 2) % 60
+        # else:
+        #     raise ValueError("Year cannot be 0.")
 
         if dt < datetime(year, 2, 4):
             year_pillar_int -= 1
