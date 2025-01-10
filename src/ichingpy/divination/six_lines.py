@@ -1,7 +1,9 @@
+# %%
 from ichingpy.divination.base import DivinationEngineBase
 from ichingpy.enum import HeavenlyStem
 from ichingpy.enum.branch import EarthlyBranch
 from ichingpy.model.hexagram import Hexagram
+from ichingpy.model.interpretation.hexagram.six_line_hexagram import SixLineHexagramInterp
 from ichingpy.model.interpretation.line.six_line_line import SixLineLineInterp
 from ichingpy.model.interpretation.trigram.six_line_trigram import SixLineTrigramInterp
 
@@ -33,6 +35,7 @@ class SixLinesDivinationEngine(DivinationEngineBase):
         self._assign_branches(inner_interp, outer_interp)
         hexagram.inner.interpretation = inner_interp
         hexagram.outer.interpretation = outer_interp
+        hexagram.interpretation = SixLineHexagramInterp(inner=inner_interp, outer=outer_interp)
 
     def _assign_stems(self, inner_interp: SixLineTrigramInterp, outer_interp: SixLineTrigramInterp):
         """Assign stems to the both inner and outer trigrams of the hexagram."""
@@ -84,3 +87,6 @@ class SixLinesDivinationEngine(DivinationEngineBase):
         else:  # remainder is 0
             # 阴逆
             trigram.branch = [first_branch, first_branch - 2, first_branch - 4]
+
+
+# %%

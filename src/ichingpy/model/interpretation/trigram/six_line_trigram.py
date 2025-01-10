@@ -6,9 +6,6 @@ from ichingpy.model.interpretation.trigram.base import TrigramInterpretationBase
 
 class SixLineTrigramInterp(TrigramInterpretationBase[SixLineLineInterp]):
 
-    def __repr__(self) -> str:
-        return ""
-
     @property
     def stem(self) -> list[HeavenlyStem]:
         if not all(hasattr(line, "_stem") for line in self.lines):

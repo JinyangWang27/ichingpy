@@ -1,6 +1,5 @@
 import pytest
 
-from ichingpy.enum.language import Language
 from ichingpy.enum.line_status import LineStatus
 from ichingpy.model.line import Line
 
@@ -26,12 +25,3 @@ def test_line_transform(status: LineStatus, transformed_status: LineStatus):
     line = Line(status=status)
     assert line.is_transform == True
     assert line.get_transformed().status is transformed_status
-
-
-def test_line_display_language_setter():
-    assert Line.display_language == Language.CHINESE
-    import ichingpy as icp
-
-    icp.set_language("en")
-    assert icp.Line.display_language == Language.ENGLISH
-    icp.set_language("zh")

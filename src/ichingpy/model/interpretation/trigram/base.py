@@ -12,6 +12,9 @@ class TrigramInterpretationBase(InterpretationBase, Generic[TLineInterp]):
 
     lines: list[TLineInterp]
 
+    def __repr__(self):
+        return "\n".join(repr(line) for line in self.lines[::-1])
+
     @property
     def value(self) -> list[int]:
         return [line.status.value for line in self.lines]

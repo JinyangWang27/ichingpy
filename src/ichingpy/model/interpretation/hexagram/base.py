@@ -12,5 +12,12 @@ class HexagramInterpretationBase(InterpretationBase, Generic[TTrigramInterp]):
     inner: TTrigramInterp
     outer: TTrigramInterp
 
-    def __repr__(self):
-        return ""
+    @property
+    def lines(self) -> list[LineInterpretationBase]:
+        """Get the lines of the Hexagram.
+        返回卦之六爻。
+        """
+        return self.inner.lines + self.outer.lines
+
+    def __repr__(self) -> str:
+        return "\n".join(repr(line) for line in self.lines[::-1])
