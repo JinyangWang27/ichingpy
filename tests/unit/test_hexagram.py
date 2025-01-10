@@ -1,6 +1,5 @@
 import pytest
 
-from ichingpy.enum import HeavenlyStem
 from ichingpy.model.hexagram import Hexagram, Trigram
 
 
@@ -24,14 +23,6 @@ def test_hexagram_from_trigrams():
     outer = Trigram.random()
     hexagram = Hexagram(inner=inner, outer=outer)
     assert isinstance(hexagram, Hexagram)
-
-
-def test_hexagram_inner_setter():
-    gua = Hexagram.random()
-    gua.inner.stem = HeavenlyStem.Jia
-    gua.outer.stem = HeavenlyStem.Bing
-    assert gua.inner.stem == [HeavenlyStem.Jia] * 3
-    assert gua.outer.stem == [HeavenlyStem.Bing] * 3
 
 
 def test_hexagram_transform():

@@ -6,6 +6,9 @@ from pydantic import BaseModel
 
 from ichingpy.enum.line_status import LineStatus
 from ichingpy.model.four_pillars import FourPillars
+from ichingpy.model.interpretation.hexagram.base import HexagramInterpretationBase
+from ichingpy.model.interpretation.line.base import LineInterpretationBase
+from ichingpy.model.interpretation.trigram.base import TrigramInterpretationBase
 from ichingpy.model.line import Line
 from ichingpy.model.trigram import Trigram
 
@@ -15,6 +18,8 @@ class Hexagram(BaseModel):
 
     inner: Trigram
     outer: Trigram
+
+    interpretation: HexagramInterpretationBase[TrigramInterpretationBase[LineInterpretationBase]] | None = None
 
     @property
     def lines(self) -> list[Line]:

@@ -5,6 +5,7 @@ from pydantic import BaseModel
 
 from ichingpy.enum import EarthlyBranch, HeavenlyStem, LineStatus
 from ichingpy.enum.language import Language
+from ichingpy.model.interpretation.hexagram.six_line_hexagram import SixLineHexagramInterp
 
 
 class LineTransformationError(Exception):
@@ -17,6 +18,7 @@ class Line(BaseModel):
     display_language: ClassVar[Language] = Language.CHINESE
 
     status: LineStatus
+    interpretation: SixLineHexagramInterp | None = None
 
     def __repr__(self) -> str:
         representation = f"-----" if self.is_yang else f"-- --"

@@ -1,7 +1,9 @@
 from ichingpy.divination.base import DivinationEngineBase
 from ichingpy.enum import HeavenlyStem
 from ichingpy.enum.branch import EarthlyBranch
-from ichingpy.model.hexagram import Hexagram, Trigram
+from ichingpy.model.hexagram import Hexagram
+from ichingpy.model.interpretation.line.six_line_line import SixLineLineInterp
+from ichingpy.model.interpretation.trigram.six_line_trigram import SixLineTrigramInterp
 
 
 class SixLinesDivinationEngine(DivinationEngineBase):
@@ -20,21 +22,29 @@ class SixLinesDivinationEngine(DivinationEngineBase):
         (1, 1, 0): EarthlyBranch.Si,  # 兌 0
     }
 
+    def assign_interpretations(self, hexagram: Hexagram) -> tuple[SixLineTrigramInterp, SixLineTrigramInterp]:
+        lines = [SixLineLineInterp(status=line.status) for line in hexagram.lines]
+        return SixLineTrigramInterp(lines=lines[:3]), SixLineTrigramInterp(lines=lines[3:])
+
     def execute(self, hexagram: Hexagram):
-        self.assign_stems(hexagram)
-        self.assign_branches(hexagram)
 
-    def assign_stems(self, hexagram: Hexagram):
+        inner_interp, outer_interp = self.assign_interpretations(hexagram)
+        self._assign_stems(inner_interp, outer_interp)
+        self._assign_branches(inner_interp, outer_interp)
+        hexagram.inner.interpretation = inner_interp
+        hexagram.outer.interpretation = outer_interp
+
+    def _assign_stems(self, inner_interp: SixLineTrigramInterp, outer_interp: SixLineTrigramInterp):
         """Assign stems to the both inner and outer trigrams of the hexagram."""
-        self._assign_stems_for_trigram(hexagram.outer, inner=False)
-        self._assign_stems_for_trigram(hexagram.inner, inner=True)
+        self._assign_stems_for_trigram(inner_interp, inner=True)
+        self._assign_stems_for_trigram(outer_interp, inner=False)
 
-    def assign_branches(self, hexagram: Hexagram):
+    def _assign_branches(self, inner_interp: SixLineTrigramInterp, outer_interp: SixLineTrigramInterp):
         """Assign branches to the both inner and outer trigrams of the hexagram."""
-        self._assign_branches_for_trigram(hexagram.outer, inner=False)
-        self._assign_branches_for_trigram(hexagram.inner, inner=True)
+        self._assign_branches_for_trigram(inner_interp, inner=True)
+        self._assign_branches_for_trigram(outer_interp, inner=False)
 
-    def _assign_stems_for_trigram(self, trigram: Trigram, inner: bool):
+    def _assign_stems_for_trigram(self, trigram: SixLineTrigramInterp, inner: bool):
         """Assign stems to the trigram based on the trigram's value."""
         # 乾内甲外壬，艮丙坎戊震庚；
         # 坤内乙外癸，兑丁离己巽辛
@@ -58,7 +68,7 @@ class SixLinesDivinationEngine(DivinationEngineBase):
             case _:  # pragma: no cover
                 raise ValueError(f"Invalid trigram {trigram.value}")
 
-    def _assign_branches_for_trigram(self, trigram: Trigram, inner: bool):
+    def _assign_branches_for_trigram(self, trigram: SixLineTrigramInterp, inner: bool):
         """Assign branches to the trigram based on the trigram's value."""
         # trigram_values = tuple(v % 2 for v in trigram.value) # linter is not smart enough...
         v1, v2, v3 = trigram.value
