@@ -29,6 +29,8 @@ class Hexagram(BaseModel):
         return self.inner.lines + self.outer.lines
 
     def __repr__(self):
+        if self.interpretation is not None:
+            return repr(self.interpretation)
         return "\n".join(repr(line) for line in self.lines[::-1])
 
     def __str__(self):

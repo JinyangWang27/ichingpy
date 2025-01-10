@@ -11,3 +11,6 @@ class HexagramInterpretationBase(InterpretationBase, Generic[TTrigramInterp]):
 
     inner: TTrigramInterp
     outer: TTrigramInterp
+
+    def __repr__(self):
+        return ""
