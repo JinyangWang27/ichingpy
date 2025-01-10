@@ -23,13 +23,27 @@ from ichingpy.model.hexagram import Hexagram
             [EarthlyBranch.Wei, EarthlyBranch.Si, EarthlyBranch.Mao],
             [EarthlyBranch.Chou, EarthlyBranch.Hai, EarthlyBranch.You],
         ),
-        # (
-        #     [1, 2, 1, 1, 1, 2],  # 泽火革
-        #     HeavenlyStem.Ji,
-        #     HeavenlyStem.Ding,
-        #     [EarthlyBranch.Chen, EarthlyBranch.Xu, EarthlyBranch.Chou],
-        #     [EarthlyBranch.Yin, EarthlyBranch.Mao, EarthlyBranch.Chen],
-        # ),
+        (
+            [1, 2, 1, 1, 1, 2],  # 泽火革
+            HeavenlyStem.Ji,
+            HeavenlyStem.Ding,
+            [EarthlyBranch.Mao, EarthlyBranch.Chou, EarthlyBranch.Hai],
+            [EarthlyBranch.Hai, EarthlyBranch.You, EarthlyBranch.Wei],
+        ),
+        (
+            [2, 1, 2, 1, 2, 2],  # 雷水解
+            HeavenlyStem.Wu,
+            HeavenlyStem.Geng,
+            [EarthlyBranch.Yin, EarthlyBranch.Chen, EarthlyBranch.Wu],
+            [EarthlyBranch.Wu, EarthlyBranch.Shen, EarthlyBranch.Xu],
+        ),
+        (
+            [2, 2, 1, 2, 1, 1],  # 风山渐
+            HeavenlyStem.Bing,
+            HeavenlyStem.Xin,
+            [EarthlyBranch.Chen, EarthlyBranch.Wu, EarthlyBranch.Shen],
+            [EarthlyBranch.Wei, EarthlyBranch.Si, EarthlyBranch.Mao],
+        ),
     ],
 )
 def test_six_line_engine(
@@ -49,27 +63,3 @@ def test_six_line_engine(
     assert all([stem == outer_stem for stem in hexagram.outer.interpretation.stem])
     assert hexagram.inner.interpretation.branch == inner_branch
     assert hexagram.outer.interpretation.branch == outer_branch
-
-    # ge = Hexagram.from_binary([1, 2, 1, 1, 1, 2])  #   泽火革
-    # six_line_engine._assign_stems(ge)
-    # assert all([stem == HeavenlyStem.Ji for stem in ge.inner.stem])
-    # assert all([stem == HeavenlyStem.Ding for stem in ge.outer.stem])
-
-    # zhun = Hexagram.from_binary([1, 2, 2, 2, 1, 2])  # 水雷屯
-    # six_line_engine._assign_stems(zhun)
-    # assert all([stem == HeavenlyStem.Geng for stem in zhun.inner.stem])
-    # assert all([stem == HeavenlyStem.Wu for stem in zhun.outer.stem])
-
-    # jian = Hexagram.from_binary([2, 2, 1, 2, 1, 1])  #
-    # six_line_engine._assign_stems(jian)
-    # assert all([stem == HeavenlyStem.Bing for stem in jian.inner.stem])
-    # assert all([stem == HeavenlyStem.Xin for stem in jian.outer.stem])
-
-
-# def test_hexagram_assign_branch(six_line_engine: SixLinesDivinationEngine):
-
-
-#     shi = Hexagram.from_binary([2, 1, 2, 2, 2, 2])
-#     six_line_engine._assign_branches(shi)
-#     assert shi.inner.branch == [EarthlyBranch.Yin, EarthlyBranch.Chen, EarthlyBranch.Wu]
-#     assert shi.outer.branch == [EarthlyBranch.Chou, EarthlyBranch.Hai, EarthlyBranch.You]

@@ -14,7 +14,7 @@ class SixLinesDivinationEngine(DivinationEngineBase):
     FIRST_BRANCH_MAPPING = {
         (1, 1, 1): EarthlyBranch.Zi,  # 乾 1 (remainder of sum modulo 2)
         (0, 1, 0): EarthlyBranch.Yin,  # 坎 1
-        (0, 0, 1): EarthlyBranch.Wu,  # 艮 1
+        (0, 0, 1): EarthlyBranch.Chen,  # 艮 1
         (1, 0, 0): EarthlyBranch.Zi,  # 震 1
         (0, 1, 1): EarthlyBranch.Chou,  # 巽 0
         (1, 0, 1): EarthlyBranch.Mao,  # 離 0
