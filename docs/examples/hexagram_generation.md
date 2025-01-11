@@ -24,7 +24,7 @@ hexagram = icp.Hexagram.from_three_coins()
 ```
 
 ## From datetime
-IChingPy will first convert a datetime object into [FourPillars](api/model/four_pillars.md)(八字/四柱), and generate a hexagram using the FourPillars.
+IChingPy will first convert a datetime object into [FourPillars](../api/model/four_pillars.md)(八字/四柱), and generate a hexagram using the FourPillars.
 ```python
 from datetime import datetime 
 
@@ -48,4 +48,4 @@ hexagram = icp.Hexagram.from_binary([1, 1, 1, 0, 0, 0])
 - 2: STATIC_YIN, broken line (少阴)
 - 3: CHANGING_YANG, broken line, will change (老阳， 太阳)
 
-See [LineStatus](api/enum/line_status.md) for explanation of the numbers.
+See [LineStatus](../api/enum/line_status.md) for explanation of the numbers.
