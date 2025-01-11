@@ -1,0 +1,100 @@
+site_name: "IChingPy"
+site_description: "An object-oriented Python library for working with the I-Ching with type annotations"
+
+theme:
+        name: material
+        palette:
+                - media: "(prefers-color-scheme: light)"
+                  scheme: default
+                  primary: deep purple
+                  accent: amber
+                  toggle:
+                          icon: material/lightbulb-outline
+                          name: "Switch to dark mode"
+                - media: "(prefers-color-scheme: dark)"
+                  scheme: slate
+                  primary: deep purple
+                  accent: amber
+                  toggle:
+                          icon: material/lightbulb
+                          name: "Switch to light mode"
+        # logo: ''
+        features:
+                - content.tabs.link
+                - content.code.annotate
+                - content.code.copy
+                - announce.dismiss
+                - navigation.tabs
+                - navigation.instant
+                - navigation.instant.prefetch
+                - navigation.instant.preview
+                - navigation.instant.progress
+                - navigation.path
+                - navigation.top
+                - navigation.tracking
+                - search.suggest
+                - toc.follow
+repo_name: ichingpy
+repo_url: https://github.com/JinyangWang27/ichingpy
+
+extra_css:
+        - "extra/terminal.css"
+        - "extra/tweaks.css"
+extra_javascript:
+        - "extra/feedback.js"
+        - "extra/fluff.js"
+
+nav:
+        - Get Started:
+                  - Welcome to IChingPy: index.md
+                  - Installation: install.md
+          # - Migration Guide: migration.md
+          # - Version Policy: version-policy.md
+          # - Contributing: contributing.md
+          # - Changelog: changelog.md
+
+        - Foreword by Carl Jung:
+                  - Foreword: books/en/RichardWilhelm/foreword_CG_Jung.md
+
+        - Examples:
+                  - Create Hexagram: examples/six_line_engine.md
+
+        - API Documentation:
+                - Enum:
+                        - HeavenlyStem: api/enum/stem.md
+                        - EarthlyBranch: api/enum/branch.md
+                        - FivePhase: api/enum/five_phase.md
+                - Model:
+                        - Line: api/model/line.md
+                        - Trigram: api/model/trigram.md
+                        - Hexagram: api/model/hexagram.md
+                        - SexagenaryCycle: api/model/sexagenary_cycle.md
+markdown_extensions:
+        - tables
+        - toc:
+                  permalink: true
+                  title: Page contents
+        - admonition
+        - pymdownx.details
+        - pymdownx.highlight:
+                  pygments_lang_class: true
+        - pymdownx.extra
+        # - pymdownx.emoji:
+        #           emoji_index: !!python/name:material.extensions.emoji.twemoji
+        #           emoji_generator: !!python/name:material.extensions.emoji.to_svg
+        - pymdownx.tabbed:
+                  alternate_style: true
+        # - pymdownx.superfences:
+        #           custom_fences:
+        #                   - name: plotly
+        #                     class: mkdocs-plotly
+        #                     format: !!python/name:mkdocs_plotly_plugin.fences.fence_plotly
+plugins:
+        - search
+        # - plotly
+        - mkdocstrings:
+                  handlers:
+                          python:
+                                  paths: [src]
+                                  options:
+                                          docstring_style: google

@@ -1,0 +1,1 @@
+::: ichingpy.model.trigram.Trigram
