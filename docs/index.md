@@ -6,6 +6,8 @@
 
 An object-oriented Python library for working with the **I-Ching** ☯️ with type annotations.
 
+[Foreword by Carl Jung](books/en//RichardWilhelm//foreword_CG_Jung.md)
+
 ## Motivation and Goal
 
 Most applications (mostly divination methods) of the I-Ching are considered as superstitious. 

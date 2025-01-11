@@ -54,9 +54,9 @@ import ichingpy as icp
 
 ```python
 >>> from datetime import datetime
->>> ba_zi = icp.FourPillars.from_datetime(datetime(2000, 7, 15, 11, 0, 0))
->>> ba_zi.get_pillars()
-'庚辰年 癸未月 甲戌日 庚午时'
+ba_zi = icp.FourPillars.from_datetime(datetime(2000, 7, 15, 11, 0, 0))
+ba_zi.get_pillars()
+#> 庚辰年 癸未月 甲戌日 庚午时
 ```
 
 一个四柱 (FourPillars) 对象也有自己的字符串表示形式

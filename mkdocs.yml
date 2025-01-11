@@ -57,18 +57,31 @@ nav:
                   - Foreword: books/en/RichardWilhelm/foreword_CG_Jung.md
 
         - Examples:
-                  - Create Hexagram: examples/six_line_engine.md
+                - Datetime to FourPillars (公历时间转八字): examples/four_pillars.md
+                - Hexagram generation (起卦): examples/hexagram_generation.md
+                - SexagenaryCycle (天干地支): examples/sexagenary_cycle.md 
+                - Six Line Divination (六爻占卜): examples/six_line_engine.md
 
         - API Documentation:
                 - Enum:
                         - HeavenlyStem: api/enum/stem.md
                         - EarthlyBranch: api/enum/branch.md
                         - FivePhase: api/enum/five_phase.md
+                        - MixEnum: api/enum/mixed_enum.md
+                        - LineStatus: api/enum/line_status.md
                 - Model:
+                        - FourPillars: api/model/four_pillars.md
                         - Line: api/model/line.md
                         - Trigram: api/model/trigram.md
                         - Hexagram: api/model/hexagram.md
                         - SexagenaryCycle: api/model/sexagenary_cycle.md
+                        - Interpretations:
+                                - BaseInterpretation: api/model/interpretation/base.md
+                                - Line:
+                                        - SixLineLineInterpretation: api/model/interpretation/line/six_line_line.md
+                - Divination:
+                        - base: api/divination/base.md
+                        - SixLines: api/divination/six_lines.md
 markdown_extensions:
         - tables
         - toc:

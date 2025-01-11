@@ -1,0 +1,1 @@
+::: ichingpy.model.interpretation.line.six_line_line.SixLineLineInterp

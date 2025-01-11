@@ -1,0 +1,1 @@
+::: ichingpy.model.interpretation.base.InterpretationBase
