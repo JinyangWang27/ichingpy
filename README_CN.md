@@ -33,6 +33,9 @@
 > pip install ichingpy
 
 
+## 帮助
+见[文档](https://jinyangwang27.github.io/ichingpy/)获取更多细节。
+
 ## 简例
 
 导入库，默认显示语言为汉语。
