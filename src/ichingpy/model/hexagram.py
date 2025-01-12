@@ -28,6 +28,13 @@ class Hexagram(BaseModel):
         """
         return self.inner.lines + self.outer.lines
 
+    @property
+    def values(self) -> list[int]:
+        """Get the values of the Hexagram.
+        返回卦之六爻之数。
+        """
+        return [line.value for line in self.lines]
+
     def __repr__(self):
         if self.interpretation is not None:
             return repr(self.interpretation)
