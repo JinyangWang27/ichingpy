@@ -19,6 +19,7 @@ __all__ = [
     "Trigram",
     "SexagenaryCycle",
     "SixLinesDivinationEngine",
+    "IChingDivinationEngine",
     "FourPillars",
     "set_language",
 ]

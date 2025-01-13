@@ -7,6 +7,7 @@ from ichingpy.model.interpretation.trigram.iching_trigram import IChingTrigramIn
 
 class IChingHexagramInterp(HexagramInterpretationBase[IChingTrigramInterp, IChingLineInterp]):
     name: str
+    text: str
     image: str
     lines: list[IChingLineInterp]
     use: IChingLineInterp | None = None
@@ -27,4 +28,4 @@ class IChingHexagramInterp(HexagramInterpretationBase[IChingTrigramInterp, IChin
         for line in self.lines:
             if line.is_transform:
                 text += f"{line.name} {line.text}\n"
-        return f"{self.name} {self.image}\n{graph_repr}\n{text}"
+        return f"{self.name}: {self.text}\n{self.image}\n{graph_repr}\n{text}"
