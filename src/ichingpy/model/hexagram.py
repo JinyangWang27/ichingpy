@@ -19,7 +19,9 @@ class Hexagram(BaseModel):
     inner: Trigram
     outer: Trigram
 
-    interpretation: HexagramInterpretationBase[TrigramInterpretationBase[LineInterpretationBase]] | None = None
+    interpretation: (
+        HexagramInterpretationBase[TrigramInterpretationBase[LineInterpretationBase], LineInterpretationBase] | None
+    ) = None
 
     @property
     def lines(self) -> list[Line]:
