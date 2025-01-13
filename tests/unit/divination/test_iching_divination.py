@@ -7,5 +7,7 @@ def test_iching_divination():
     hexagram = Hexagram.from_binary([1, 1, 3, 1, 1, 3])
     engine = IChingDivinationEngine()
     engine.execute(hexagram)
-    for line in hexagram.interpretation.lines:  # type: ignore
-        assert isinstance(repr(line), str)  # type: ignore
+    assert hexagram.interpretation is not None
+    for line in hexagram.interpretation.get_lines():
+        assert isinstance(repr(line), str)
+    assert isinstance(repr(hexagram.interpretation), str)
