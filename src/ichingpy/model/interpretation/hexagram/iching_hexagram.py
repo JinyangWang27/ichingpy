@@ -1,12 +1,11 @@
 from pydantic import field_validator
 
 from ichingpy.model.interpretation.hexagram.base import HexagramInterpretationBase
-from ichingpy.model.interpretation.line.base import LineInterpretationBase
 from ichingpy.model.interpretation.line.iching_line import IChingLineInterp
 from ichingpy.model.interpretation.trigram.iching_trigram import IChingTrigramInterp
 
 
-class IChingHexagramInterp(HexagramInterpretationBase[IChingTrigramInterp]):
+class IChingHexagramInterp(HexagramInterpretationBase[IChingTrigramInterp, IChingLineInterp]):
     name: str
     image: str
     lines: list[IChingLineInterp]
@@ -19,9 +18,8 @@ class IChingHexagramInterp(HexagramInterpretationBase[IChingTrigramInterp]):
         assert len(interp_list) == 6, "Hexagram must have 6 lines."
         return interp_list
 
-    def get_lines(self) -> list[LineInterpretationBase]:
-        # fix generic type
-        return self.lines  # type: ignore
+    def get_lines(self) -> list[IChingLineInterp]:
+        return self.lines
 
     def __repr__(self) -> str:
         graph_repr = "\n".join(repr(line) for line in self.lines[::-1])
