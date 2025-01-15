@@ -47,14 +47,14 @@ extra_javascript:
 nav:
         - Get Started:
                   - Welcome to IChingPy: index.md
+                  - Foreword by Carl Jung: books/en/RichardWilhelm/foreword_CG_Jung.md
                   - Installation: install.md
+
           # - Migration Guide: migration.md
           # - Version Policy: version-policy.md
           # - Contributing: contributing.md
           # - Changelog: changelog.md
 
-        - Foreword by Carl Jung:
-                  - Foreword: books/en/RichardWilhelm/foreword_CG_Jung.md
 
         - Examples:
                 - Datetime to FourPillars (公历时间转八字): examples/four_pillars.md

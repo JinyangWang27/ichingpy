@@ -6,6 +6,7 @@
 
 An object-oriented Python library for working with the **I-Ching** ☯️ with type annotations.
 
+## What is I-Ching (the Book of Changes)?
 [Foreword by Carl Jung](books/en//RichardWilhelm//foreword_CG_Jung.md)
 
 ## Motivation and Goal
