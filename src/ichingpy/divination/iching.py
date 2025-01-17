@@ -13,7 +13,7 @@ class IChingDivinationEngine(DivinationEngineBase):
         self._load_interpretation_data()
 
     def _load_interpretation_data(self) -> None:
-        with importlib.resources.files("ichingpy.data").joinpath("iching_zh.json").open() as f:
+        with importlib.resources.files("ichingpy.data").joinpath("iching_zh.json").open(encoding="utf8") as f:
             self._data = json.load(f)["hexagrams"]
 
     def execute(self, hexagram: Hexagram) -> None:

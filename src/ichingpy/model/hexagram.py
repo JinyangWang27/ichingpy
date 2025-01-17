@@ -52,7 +52,12 @@ class Hexagram(BaseModel):
     @classmethod
     def from_lines(cls, lines: list[Line]) -> Self:
         """Create a new instance of the Hexagram class from a list of Lines."""
-        return cls(inner=Trigram(lines=lines[:3]), outer=Trigram(lines=lines[3:]))
+        hexagram = cls(inner=Trigram(lines=lines[:3]), outer=Trigram(lines=lines[3:]))
+        from ichingpy.divination.iching import IChingDivinationEngine
+
+        engine = IChingDivinationEngine()
+        engine.execute(hexagram)
+        return hexagram
 
     @classmethod
     def from_binary(cls, lines: list[int]) -> Self:
