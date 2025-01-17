@@ -10,7 +10,7 @@ class IChingHexagramInterp(HexagramInterpretationBase[IChingTrigramInterp, IChin
     text: str
     image: str
     lines: list[IChingLineInterp]
-    use: IChingLineInterp | None = None
+    use: IChingLineInterp | None = None  # 乾用九，坤用六
 
     @field_validator("lines", mode="before")
     @classmethod
