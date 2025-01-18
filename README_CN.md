@@ -84,25 +84,33 @@ ba_zi.get_pillars()
 #### 八字起卦
 给定年月日时起卦
 ```python
->>> from datetime import datetime
->>> icp.Hexagram.from_datetime(datetime(2022, 3, 31, 11, 0, 0)) 
------
--- --
--- -- X -> -----
--- --
------
--- --
+from datetime import datetime
+icp.Hexagram.from_datetime(datetime(2022, 3, 31, 11, 0, 0)) 
+#> 蒙 -> 未济
+#> 亨。匪我求童蒙，童蒙求我。初筮告，再三渎，渎则不告。利贞。
+#> 山下出泉，蒙；君子以果行育德。
+#> -----
+#> -- --
+#> -- -- X -> -----
+#> -- --
+#> -----
+#> -- --
+#> 六四 困蒙，吝。
 ```
 使用当前八字起卦
 
 ```python
 icp.Hexagram.from_datetime(datetime.now()) 
------
--- --
------ O -> -- --
--- --
--- --
------
+#> 睽 -> 噬嗑
+#> 小事吉。
+#> 上火下泽，睽；君子以同而异。
+#> -----
+#> -- --
+#> -----
+#> -- --
+#> ----- O -> -- --
+#> -----
+#> 九二 遇主于巷，无咎。
 ```
 
 #### 铜钱起卦
@@ -114,33 +122,36 @@ icp.Hexagram.from_three_coins()
 #### 蓍草起卦
 
 ```python
->>> icp.Hexagram.from_yarrow_stalks()
+icp.Hexagram.from_yarrow_stalks()
 ```
 
 ### 装卦，纳干支
 创建一个天风姤卦，无动爻
 ```python
->>> gou = icp.Hexagram.from_binary([2, 1, 1, 1, 1, 1]) 
->>> gou
------
------
------
------
------
--- --
+gou = icp.Hexagram.from_binary([2, 1, 1, 1, 1, 1]) 
+gou
+#> 姤
+#> 女壮，勿用取女。
+#> 天下有风，姤；后以施命诰四方。
+#> -----
+#> -----
+#> -----
+#> -----
+#> -----
+#> -- --
 ```
 
 创建一个干支装卦器，装卦
 ```python
->>> assigner = icp.SixLinesDivinationEngine()
->>> assigner.execute(gou) 
->>> gou
-壬 戌土 -----
-壬 申金 -----
-壬 午火 -----
-辛 酉金 -----
-辛 亥水 -----
-辛 丑土 -- --
+engine = icp.SixLinesDivinationEngine()
+engine.execute(gou)  
+#> gou
+#> 壬 戌土 -----
+#> 壬 申金 -----
+#> 壬 午火 -----
+#> 辛 酉金 -----
+#> 辛 亥水 -----
+#> 辛 丑土 -- --
 ```
 
 

@@ -1,5 +1,6 @@
 import random
 from datetime import datetime
+from functools import cached_property
 from typing import Self
 
 from pydantic import BaseModel
@@ -45,9 +46,10 @@ class Hexagram(BaseModel):
     def __str__(self):
         return repr(self)
 
-    def get_transformed(self) -> "Hexagram":
+    @cached_property
+    def transformed(self) -> "Hexagram":
         """Get the transformed Hexagram (变卦)."""
-        return Hexagram(inner=self.inner.get_transformed(), outer=self.outer.get_transformed())
+        return Hexagram(inner=self.inner.transformed, outer=self.outer.transformed)
 
     @classmethod
     def from_lines(cls, lines: list[Line]) -> Self:

@@ -19,3 +19,13 @@ class SixLineHexagramInterp(HexagramInterpretationBase[SixLineTrigramInterp, Six
 
     def __repr__(self) -> str:
         return "\n".join(repr(line) for line in self.lines[::-1])
+
+    @property
+    def transformed(self) -> "SixLineHexagramInterp":
+        if hasattr(self, "_transformed"):
+            return self._transformed
+        raise AttributeError("Transformed Hexagram interpretation not set.")
+
+    @transformed.setter
+    def transformed(self, value: "SixLineHexagramInterp"):
+        self._transformed = value

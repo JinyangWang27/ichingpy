@@ -27,7 +27,7 @@ def test_hexagram_from_trigrams():
 
 def test_hexagram_transform():
     qian_zhi_gou = Hexagram.from_binary([3, 1, 1, 1, 1, 1])
-    transformed = qian_zhi_gou.get_transformed()
+    transformed = qian_zhi_gou.transformed
     assert transformed.inner.name == "巽"
     assert transformed.outer.name == "乾"
 

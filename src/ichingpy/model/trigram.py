@@ -1,4 +1,5 @@
 # %%
+from functools import cached_property
 from typing import ClassVar, Self
 
 from pydantic import BaseModel, field_validator
@@ -44,7 +45,8 @@ class Trigram(BaseModel):
         # 0: changing yin, 1: static yang, 2: static yin, 3: changing yang
         return self.NAME_MAP[(self.value[0] % 2, self.value[1] % 2, self.value[2] % 2)]
 
-    def get_transformed(self) -> "Trigram":
+    @cached_property
+    def transformed(self) -> "Trigram":
         transformed_lines = [line.get_transformed() if line.is_transform else line for line in self.lines]
         return Trigram(lines=transformed_lines)
 
