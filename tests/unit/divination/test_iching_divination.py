@@ -21,10 +21,11 @@ def test_iching_divination(hexagram_int: list[int]):
     hexagram = Hexagram.from_binary(hexagram_int)
     engine = IChingDivinationEngine()
     engine.execute(hexagram)
-    assert hexagram.interpretation is not None
+    assert isinstance(hexagram.interpretation, IChingHexagramInterp)
     for line in hexagram.interpretation.get_lines():
         assert isinstance(repr(line), str)
     assert isinstance(repr(hexagram.interpretation), str)
+    assert isinstance(hexagram.interpretation.get_judgement(), str)
 
 
 def test_transformed_hexagram_has_interp(hexagram: Hexagram):
