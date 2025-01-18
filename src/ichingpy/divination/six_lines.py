@@ -29,13 +29,16 @@ class SixLinesDivinationEngine(DivinationEngineBase):
         return SixLineTrigramInterp(lines=lines[:3]), SixLineTrigramInterp(lines=lines[3:])
 
     def execute(self, hexagram: Hexagram):
+        hexagram.interpretation = self._execute_inner(hexagram)
+        hexagram.interpretation.transformed = self._execute_inner(hexagram.transformed)
 
+    def _execute_inner(self, hexagram: Hexagram) -> SixLineHexagramInterp:
         inner_interp, outer_interp = self.assign_interpretations(hexagram)
         self._assign_stems(inner_interp, outer_interp)
         self._assign_branches(inner_interp, outer_interp)
         hexagram.inner.interpretation = inner_interp
         hexagram.outer.interpretation = outer_interp
-        hexagram.interpretation = SixLineHexagramInterp(inner=inner_interp, outer=outer_interp)
+        return SixLineHexagramInterp(inner=inner_interp, outer=outer_interp)
 
     def _assign_stems(self, inner_interp: SixLineTrigramInterp, outer_interp: SixLineTrigramInterp):
         """Assign stems to the both inner and outer trigrams of the hexagram."""

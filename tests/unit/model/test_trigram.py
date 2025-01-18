@@ -16,7 +16,7 @@ def test_trigram_raise_value_error_on_invalid_input():
 
 def test_trigram_transform():
     qian_dynamic = Trigram.from_binary([3, 3, 3])
-    transformed = qian_dynamic.get_transformed()
+    transformed = qian_dynamic.transformed
     assert transformed.name == "坤"
 
 

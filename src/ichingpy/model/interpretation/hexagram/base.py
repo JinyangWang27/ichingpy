@@ -1,5 +1,5 @@
 from abc import abstractmethod
-from typing import Generic, TypeVar
+from typing import Generic, Self, TypeVar
 
 from ichingpy.model.interpretation.base import InterpretationBase
 from ichingpy.model.interpretation.line.base import LineInterpretationBase
@@ -12,4 +12,9 @@ class HexagramInterpretationBase(InterpretationBase, Generic[TTrigramInterp, TLi
 
     @abstractmethod
     def get_lines(self) -> list[TLineInterp]:
+        pass
+
+    @property
+    @abstractmethod
+    def transformed(self) -> Self:
         pass

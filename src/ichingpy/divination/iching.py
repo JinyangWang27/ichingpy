@@ -27,8 +27,12 @@ class IChingDivinationEngine(DivinationEngineBase):
             self._data = json.load(f)["hexagrams"]
 
     def execute(self, hexagram: Hexagram) -> None:
+        hexagram.interpretation = self._execute_inner(hexagram)
+        hexagram.interpretation.transformed = self._execute_inner(hexagram.transformed)
+
+    def _execute_inner(self, hexagram: Hexagram) -> IChingHexagramInterp:
         key = str(tuple([v % 2 for v in hexagram.values]))
         interp = IChingHexagramInterp.model_validate(self._data[key])
         for line, line_interp in zip(hexagram.lines, interp.lines):
             line_interp.status = line.status
-        hexagram.interpretation = interp
+        return interp

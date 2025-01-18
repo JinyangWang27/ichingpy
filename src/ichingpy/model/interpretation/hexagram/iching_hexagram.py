@@ -37,3 +37,13 @@ class IChingHexagramInterp(HexagramInterpretationBase[IChingTrigramInterp, IChin
             if line.is_transform:
                 text += f"{line.name} {line.text}\n"
         return f"{self.name}: {self.text}\n{self.image}\n{graph_repr}\n{text}"
+
+    @property
+    def transformed(self) -> "IChingHexagramInterp":
+        if hasattr(self, "_transformed"):
+            return self._transformed
+        raise AttributeError("Transformed Hexagram interpretation not set.")
+
+    @transformed.setter
+    def transformed(self, value: "IChingHexagramInterp"):
+        self._transformed = value
