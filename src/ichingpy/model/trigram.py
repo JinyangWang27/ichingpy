@@ -62,6 +62,12 @@ class Trigram(BaseModel):
     def __repr__(self):
         return "\n".join(repr(line) for line in self.lines[::-1])
 
+    @property
+    def pre_trigram_number(self) -> int:
+        # 返回先天卦数
+        value = (self.value[0] % 2, self.value[1] % 2, self.value[2] % 2)
+        return list(self.NAME_MAP.keys()).index(value) + 1
+
     @classmethod
     def from_pre_trigram_number(cls, trigram_number: int) -> Self:
         # 给定先天卦数，返回对应的八卦

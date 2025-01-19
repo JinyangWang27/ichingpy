@@ -15,3 +15,16 @@ class LineStatus(Enum):
     STATIC_YANG = 1
     STATIC_YIN = 2
     CHANGING_YANG = 3
+
+    @property
+    def opposite(self):
+        """Get the opposite status of the current status."""
+        match self:
+            case LineStatus.CHANGING_YIN:
+                return LineStatus.CHANGING_YANG
+            case LineStatus.STATIC_YANG:
+                return LineStatus.STATIC_YIN
+            case LineStatus.STATIC_YIN:
+                return LineStatus.STATIC_YANG
+            case LineStatus.CHANGING_YANG:
+                return LineStatus.CHANGING_YIN
