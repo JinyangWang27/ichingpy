@@ -53,7 +53,7 @@ import ichingpy as icp
 
 
 ```python
->>> from datetime import datetime
+from datetime import datetime
 ba_zi = icp.FourPillars.from_datetime(datetime(2000, 7, 15, 11, 0, 0))
 ba_zi.get_pillars()
 #> 庚辰年 癸未月 甲戌日 庚午时
@@ -61,21 +61,21 @@ ba_zi.get_pillars()
 
 一个四柱 (FourPillars) 对象也有自己的字符串表示形式
 ```python
->>> ba_zi
-庚辰 癸未 甲戌 庚午
+ba_zi
+#> 庚辰 癸未 甲戌 庚午
 ```
 干支记月的每月第一天（每个月上半月的节气），附近的转换可能不准：准确的转换需要计算黄道面中日地相对位置。
 [香港天文台](https://www.hko.gov.hk/sc/gts/astronomy/Solar_Term.htm)是唯一提供公开准确的节气日期的网站。
 
 例如，2025年立春提前一天，在2月3日，而不是平时的2月4日，
 ```python
->>> icp.FourPillars.from_datetime(datetime(2025, 2,3, 11, 0, 0))
-甲辰 丁丑 癸卯 戊午
+icp.FourPillars.from_datetime(datetime(2025, 2,3, 11, 0, 0))
+#> 甲辰 丁丑 癸卯 戊午
 ```
 此时，可以使用以下参数来调整年月干支
 ```python
->>> icp.FourPillars.from_datetime(datetime(2025, 2,3, 11, 0, 0), month_adjust=1)   
-乙巳 戊寅 癸卯 戊午
+icp.FourPillars.from_datetime(datetime(2025, 2,3, 11, 0, 0), month_adjust=1)   
+#> 乙巳 戊寅 癸卯 戊午
 ```
 若立春在2月5日，则 month_adjust=-1
 
@@ -161,25 +161,27 @@ engine.execute(gou)
 
 创建一个天干甲
 ```python
->>> icp.HeavenlyStem.Jia + 1
-<HeavenlyStem.Yi: 2>
+icp.HeavenlyStem.Jia + 1
+#> <HeavenlyStem.Yi: 2>
+```
 
 天干甲加天干癸
->>> gui = icp.HeavenlyStem.Gui
->>> jia = icp.HeavenlyStem.Jia
->>> jia + gui 
-<HeavenlyStem.Jia: 1>
+```python
+gui = icp.HeavenlyStem.Gui
+jia = icp.HeavenlyStem.Jia
+jia + gui 
+#> <HeavenlyStem.Jia: 1>
 ```
 
 干支组的算术运算
 ```python
->>> jia = icp.HeavenlyStem.Jia 
->>> zi = icp.EarthlyBranch.Zi
->>> jia_zi = icp.SexagenaryCycle(jia, zi)
->>> jia_zi
-甲子
->>> jia_zi+1
-乙丑
->>> jia_zi+60
-甲子
+jia = icp.HeavenlyStem.Jia 
+zi = icp.EarthlyBranch.Zi
+jia_zi = icp.SexagenaryCycle(jia, zi)
+jia_zi
+#> 甲子
+jia_zi+1
+#> 乙丑
+jia_zi+60
+#> 甲子
 ```

@@ -1,22 +1,32 @@
 # Hexagram generation (起卦)
 
 IChingPy Supports different classical methods for generating a hexagram.
-
+The default explanation/divination is provided using the text and image from I-Ching.
 ## From 50 yarrow stalks (蓍草起卦)
-
 ```python
 import ichingpy as icp
 hexagram = icp.Hexagram.from_yarrow_stalks()
 hexagram
 """
+萃 -> 比
+亨，王假有庙，利见大人，亨，利贞，用大牲吉，利有攸往。
+泽上于地，萃；君子以除戎器，戒不虞。
 -- --
--- -- X -> -----
 -----
------
------
------
+----- O -> -- --
+-- --
+-- --
+-- --
+九四 大吉，无咎。
 """
 ```
+
+The default display language is Chinese. Switch to English. 
+```python
+import ichingpy as icp
+icp.set_language("en")
+```
+Text and Image translation not added yet. Six Lines divination supports English display.
 
 ## From 3 coins (铜钱起卦)
 ```python

@@ -33,46 +33,51 @@ See [Documentation](https://jinyangwang27.github.io/ichingpy/) for more details.
 ```python
 import ichingpy as icp
 icp.set_language("en")
-
+```
 #### Arithmetic operations on Heavenly Stems and Earthly Branches (干支)
 
 ```python
->>> icp.HeavenlyStem.Jia + 1
+icp.HeavenlyStem.Jia + 1
 <HeavenlyStem.Yi: 2>
 
->>> gui = icp.HeavenlyStem.Gui
->>> jia = icp.HeavenlyStem.Jia
->>> jia + gui 
-<HeavenlyStem.Jia: 1>
+gui = icp.HeavenlyStem.Gui
+jia = icp.HeavenlyStem.Jia
+jia + gui 
+#> <HeavenlyStem.Jia: 1>
 ```
+
 ```python
->>> jia = icp.HeavenlyStem.Jia 
->>> zi = icp.EarthlyBranch.Zi
->>> jia_zi = icp.SexagenaryCycle(jia, zi)
->>> jia_zi
-Jia Zi
->>> jia_zi+1
-Yi Chou
->>> jia_zi+60
-Jia Zi
+jia = icp.HeavenlyStem.Jia 
+zi = icp.EarthlyBranch.Zi
+jia_zi = icp.SexagenaryCycle(jia, zi)
+jia_zi
+#> Jia Zi
+jia_zi+1
+#> Yi Chou
+jia_zi+60
+#> Jia Zi
 ```
 #### Assign Stem and Branch to a hexagram (装卦、纳甲)
 ```python
->>> gou = icp.Hexagram.from_binary([2, 1, 1, 1, 1, 1]) 
->>> gou
+gou = icp.Hexagram.from_binary([2, 1, 1, 1, 1, 1]) 
+gou
+"""
 -----
 -----
 -----
 -----
 -----
 -- --
->>> assigner = icp.SixLinesDivinationEngine()
->>> assigner.execute(gou) 
->>> gou
-Ren  (9) Xu   (11) EARTH -----
-Ren  (9) Shen (9 ) METAL -----
-Ren  (9) Wu   (7 ) FIRE  -----
-Xin  (8) You  (10) METAL -----
-Xin  (8) Hai  (12) WATER -----
-Xin  (8) Chou (2 ) EARTH -- --
+"""
+assigner = icp.SixLinesDivinationEngine()
+assigner.execute(gou) 
+gou
+"""
+PARENTS  Ren  (9) Xu   (11) EARTH -----
+SIBLINGS Ren  (9) Shen (9 ) METAL -----
+OFFICIALSRen  (9) Wu   (7 ) FIRE  -----
+SIBLINGS Xin  (8) You  (10) METAL -----
+CHILDREN Xin  (8) Hai  (12) WATER -----
+PARENTS  Xin  (8) Chou (2 ) EARTH -- --
+"""
 ```
