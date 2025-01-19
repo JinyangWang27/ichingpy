@@ -2,6 +2,8 @@
 from ichingpy.divination.base import DivinationEngineBase
 from ichingpy.enum import HeavenlyStem
 from ichingpy.enum.branch import EarthlyBranch
+from ichingpy.enum.palace import Palace
+from ichingpy.enum.six_relative import SixRelative
 from ichingpy.model.hexagram import Hexagram
 from ichingpy.model.interpretation.hexagram.six_line_hexagram import SixLineHexagramInterp
 from ichingpy.model.interpretation.line.six_line_line import SixLineLineInterp
@@ -29,10 +31,14 @@ class SixLinesDivinationEngine(DivinationEngineBase):
         return SixLineTrigramInterp(lines=lines[:3]), SixLineTrigramInterp(lines=lines[3:])
 
     def execute(self, hexagram: Hexagram):
-        hexagram.interpretation = self._execute_inner(hexagram)
-        hexagram.interpretation.transformed = self._execute_inner(hexagram.transformed)
+        interp = self._execute_stem_branch(hexagram)
+        interp_transformed = self._execute_stem_branch(hexagram.transformed)
+        self._assign_six_relatives(interp)
+        self._assign_six_relatives(interp_transformed, self_palace=interp.palace)
+        interp.transformed = interp_transformed
+        hexagram.interpretation = interp
 
-    def _execute_inner(self, hexagram: Hexagram) -> SixLineHexagramInterp:
+    def _execute_stem_branch(self, hexagram: Hexagram) -> SixLineHexagramInterp:
         inner_interp, outer_interp = self.assign_interpretations(hexagram)
         self._assign_stems(inner_interp, outer_interp)
         self._assign_branches(inner_interp, outer_interp)
@@ -76,7 +82,6 @@ class SixLinesDivinationEngine(DivinationEngineBase):
 
     def _assign_branches_for_trigram(self, trigram: SixLineTrigramInterp, inner: bool):
         """Assign branches to the trigram based on the trigram's value."""
-        # trigram_values = tuple(v % 2 for v in trigram.value) # linter is not smart enough...
         v1, v2, v3 = trigram.value
         trigram_values = (v1 % 2, v2 % 2, v3 % 2)
 
@@ -91,5 +96,23 @@ class SixLinesDivinationEngine(DivinationEngineBase):
             # 阴逆
             trigram.branch = [first_branch, first_branch - 2, first_branch - 4]
 
+    def _assign_six_relatives(self, hexagram: SixLineHexagramInterp, self_palace: Palace | None = None) -> None:
+        if self_palace is None:
+            self_palace = hexagram.palace
+        for line in hexagram.lines:
+            line.relative = self._get_relative_for_line(line, self_palace)
 
-# %%
+    def _get_relative_for_line(self, line: SixLineLineInterp, self_palace: Palace) -> SixRelative:
+        match line.branch.phase:
+            case self_palace.phase.generated_by:  # 生我者为父母
+                return SixRelative.PARENTS
+            case self_palace.phase.generates:  # 我生者为子孙
+                return SixRelative.CHILDREN
+            case self_palace.phase.overcomes:  # 我克者为妻财
+                return SixRelative.WEALTH
+            case self_palace.phase.overcome_by:  # 克我者为官鬼
+                return SixRelative.OFFICIALS
+            case self_palace.phase:  # 比和者为兄弟
+                return SixRelative.SIBLINGS
+            case _:  # pragma: no cover
+                raise NotImplementedError  # should never enter here
