@@ -1076,6 +1076,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#ichingpy.model.interpretation.line.six_line_line.SixLineLineInterp.relative" class="md-nav__link">
+    <span class="md-ellipsis">
+      relative
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#ichingpy.model.interpretation.line.six_line_line.SixLineLineInterp.stem" class="md-nav__link">
     <span class="md-ellipsis">
       stem
@@ -1257,6 +1266,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#ichingpy.model.interpretation.line.six_line_line.SixLineLineInterp.relative" class="md-nav__link">
+    <span class="md-ellipsis">
+      relative
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#ichingpy.model.interpretation.line.six_line_line.SixLineLineInterp.stem" class="md-nav__link">
     <span class="md-ellipsis">
       stem
@@ -1302,8 +1320,7 @@
 
               <details class="quote">
                 <summary>Source code in <code>src/ichingpy/model/interpretation/line/six_line_line.py</code></summary>
-                <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 7</span>
-<span class="normal"> 8</span>
+                <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 8</span>
 <span class="normal"> 9</span>
 <span class="normal">10</span>
 <span class="normal">11</span>
@@ -1344,7 +1361,22 @@
 <span class="normal">46</span>
 <span class="normal">47</span>
 <span class="normal">48</span>
-<span class="normal">49</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">SixLineLineInterp</span><span class="p">(</span><span class="n">LineInterpretationBase</span><span class="p">):</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">SixLineLineInterp</span><span class="p">(</span><span class="n">LineInterpretationBase</span><span class="p">):</span>
 
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="n">representation</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;-----&quot;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_yang</span> <span class="k">else</span> <span class="sa">f</span><span class="s2">&quot;-- --&quot;</span>
@@ -1357,15 +1389,18 @@
 
         <span class="n">has_stem</span> <span class="o">=</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;_stem&quot;</span><span class="p">)</span>
         <span class="n">has_branch</span> <span class="o">=</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;_branch&quot;</span><span class="p">)</span>
+        <span class="n">has_relative</span> <span class="o">=</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;_relative&quot;</span><span class="p">)</span>
         <span class="k">match</span> <span class="bp">self</span><span class="o">.</span><span class="n">display_language</span><span class="p">:</span>
             <span class="k">case</span> <span class="n">Language</span><span class="o">.</span><span class="n">ENGLISH</span><span class="p">:</span>
                 <span class="n">stem</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">stem</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">stem</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">) &quot;</span> <span class="k">if</span> <span class="n">has_stem</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
                 <span class="n">branch</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">branch</span><span class="o">.</span><span class="n">name_en</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="si">}</span><span class="s2"> &quot;</span> <span class="k">if</span> <span class="n">has_branch</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+                <span class="n">relative</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">relative</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="n">has_relative</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
             <span class="k">case</span> <span class="n">Language</span><span class="o">.</span><span class="n">CHINESE</span><span class="p">:</span>
                 <span class="n">stem</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">stem</span><span class="o">.</span><span class="n">label</span><span class="si">}</span><span class="s2"> &quot;</span> <span class="k">if</span> <span class="n">has_stem</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
                 <span class="n">branch</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">branch</span><span class="o">.</span><span class="n">label_with_phase</span><span class="si">}</span><span class="s2"> &quot;</span> <span class="k">if</span> <span class="n">has_branch</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+                <span class="n">relative</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">relative</span><span class="o">.</span><span class="n">label</span><span class="si">}</span><span class="s2"> &quot;</span> <span class="k">if</span> <span class="n">has_relative</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
 
-        <span class="n">representation</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">stem</span><span class="si">}{</span><span class="n">branch</span><span class="si">}{</span><span class="n">representation</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="n">representation</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">relative</span><span class="si">}{</span><span class="n">stem</span><span class="si">}{</span><span class="n">branch</span><span class="si">}{</span><span class="n">representation</span><span class="si">}</span><span class="s2">&quot;</span>
         <span class="k">return</span> <span class="n">representation</span>
 
     <span class="nd">@property</span>
@@ -1387,6 +1422,17 @@
     <span class="k">def</span> <span class="nf">branch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">EarthlyBranch</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Set the EarthlyBranch associated with the Line.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_branch</span> <span class="o">=</span> <span class="n">value</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">relative</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SixRelative</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The relative associated with the line, w.r.t. to the Palace&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_relative</span>
+
+    <span class="nd">@relative</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">relative</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">SixRelative</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set the relative.</span>
+<span class="sd">        装六亲&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_relative</span> <span class="o">=</span> <span class="n">value</span>
 </code></pre></div></td></tr></table></div>
               </details>
 
@@ -1418,6 +1464,28 @@
     <div class="doc doc-contents ">
 
         <p>The EarthlyBranch associated with the Line.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h2 id="ichingpy.model.interpretation.line.six_line_line.SixLineLineInterp.relative" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">relative</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+      <small class="doc doc-label doc-label-writable"><code>writable</code></small>
+  </span>
+
+<a href="#ichingpy.model.interpretation.line.six_line_line.SixLineLineInterp.relative" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>The relative associated with the line, w.r.t. to the Palace</p>
     </div>
 
 </div>

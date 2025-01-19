@@ -793,6 +793,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#ichingpy.enum.line_status.LineStatus.opposite" class="md-nav__link">
+    <span class="md-ellipsis">
+      opposite
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1225,6 +1234,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#ichingpy.enum.line_status.LineStatus.opposite" class="md-nav__link">
+    <span class="md-ellipsis">
+      opposite
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1335,7 +1353,20 @@
 <span class="normal">14</span>
 <span class="normal">15</span>
 <span class="normal">16</span>
-<span class="normal">17</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">LineStatus</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">LineStatus</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;An Enum representing the status of a line in a hexagram.</span>
 
 <span class="sd">    Attributes:</span>
@@ -1349,6 +1380,19 @@
     <span class="n">STATIC_YANG</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="n">STATIC_YIN</span> <span class="o">=</span> <span class="mi">2</span>
     <span class="n">CHANGING_YANG</span> <span class="o">=</span> <span class="mi">3</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">opposite</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the opposite status of the current status.&quot;&quot;&quot;</span>
+        <span class="k">match</span> <span class="bp">self</span><span class="p">:</span>
+            <span class="k">case</span> <span class="n">LineStatus</span><span class="o">.</span><span class="n">CHANGING_YIN</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">LineStatus</span><span class="o">.</span><span class="n">CHANGING_YANG</span>
+            <span class="k">case</span> <span class="n">LineStatus</span><span class="o">.</span><span class="n">STATIC_YANG</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">LineStatus</span><span class="o">.</span><span class="n">STATIC_YIN</span>
+            <span class="k">case</span> <span class="n">LineStatus</span><span class="o">.</span><span class="n">STATIC_YIN</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">LineStatus</span><span class="o">.</span><span class="n">STATIC_YANG</span>
+            <span class="k">case</span> <span class="n">LineStatus</span><span class="o">.</span><span class="n">CHANGING_YANG</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">LineStatus</span><span class="o">.</span><span class="n">CHANGING_YIN</span>
 </code></pre></div></td></tr></table></div>
               </details>
 
@@ -1361,6 +1405,27 @@
 
 
 
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h2 id="ichingpy.enum.line_status.LineStatus.opposite" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">opposite</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+<a href="#ichingpy.enum.line_status.LineStatus.opposite" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get the opposite status of the current status.</p>
+    </div>
+
+</div>
 
 
 

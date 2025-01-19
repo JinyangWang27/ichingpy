@@ -1300,20 +1300,30 @@
 
 
 <h1 id="hexagram-generation">Hexagram generation (起卦)<a class="headerlink" href="#hexagram-generation" title="Permanent link">&para;</a></h1>
-<p>IChingPy Supports different classical methods for generating a hexagram.</p>
+<p>IChingPy Supports different classical methods for generating a hexagram.
+The default explanation/divination is provided using the text and image from I-Ching.</p>
 <h2 id="from-50-yarrow-stalks">From 50 yarrow stalks (蓍草起卦)<a class="headerlink" href="#from-50-yarrow-stalks" title="Permanent link">&para;</a></h2>
 <div class="language-python highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">ichingpy</span> <span class="k">as</span> <span class="nn">icp</span>
 <span class="n">hexagram</span> <span class="o">=</span> <span class="n">icp</span><span class="o">.</span><span class="n">Hexagram</span><span class="o">.</span><span class="n">from_yarrow_stalks</span><span class="p">()</span>
 <span class="n">hexagram</span>
 <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">萃 -&gt; 比</span>
+<span class="sd">亨，王假有庙，利见大人，亨，利贞，用大牲吉，利有攸往。</span>
+<span class="sd">泽上于地，萃；君子以除戎器，戒不虞。</span>
 <span class="sd">-- --</span>
-<span class="sd">-- -- X -&gt; -----</span>
 <span class="sd">-----</span>
-<span class="sd">-----</span>
-<span class="sd">-----</span>
-<span class="sd">-----</span>
+<span class="sd">----- O -&gt; -- --</span>
+<span class="sd">-- --</span>
+<span class="sd">-- --</span>
+<span class="sd">-- --</span>
+<span class="sd">九四 大吉，无咎。</span>
 <span class="sd">&quot;&quot;&quot;</span>
 </code></pre></div>
+<p>The default display language is Chinese. Switch to English. 
+<div class="language-python highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">ichingpy</span> <span class="k">as</span> <span class="nn">icp</span>
+<span class="n">icp</span><span class="o">.</span><span class="n">set_language</span><span class="p">(</span><span class="s2">&quot;en&quot;</span><span class="p">)</span>
+</code></pre></div>
+Text and Image translation not added yet. Six Lines divination supports English display.</p>
 <h2 id="from-3-coins">From 3 coins (铜钱起卦)<a class="headerlink" href="#from-3-coins" title="Permanent link">&para;</a></h2>
 <div class="language-python highlight"><pre><span></span><code><span class="n">hexagram</span> <span class="o">=</span> <span class="n">icp</span><span class="o">.</span><span class="n">Hexagram</span><span class="o">.</span><span class="n">from_three_coins</span><span class="p">()</span>
 </code></pre></div>
