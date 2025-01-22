@@ -7,154 +7,128 @@
             "lines": {
                 "1": {
                     "name": "Nine at the beginning",
-                    "text": "潜龙勿用。",
-                    "image": "潜龙勿用，阳在下也。"
+                    "text": "Hidden dragon. Do not act."                
                 },
                 "2": {
                     "name": "Nine in the second place",
-                    "text": "见龙在田，利见大人。",
-                    "image": "见龙在田，德施普也。"
+                    "text": "Dragon appearing in the field. It furthers one to see the great man."
                 },
                 "3": {
                     "name": "Nine in the third place",
-                    "text": "君子终日乾乾，夕惕若厉，无咎。",
-                    "image": "终日乾乾，反复道也。"
+                    "text": "All day long the superior man is creatively active. At nightfall his mind is still beset with cares. Danger. No blame."
                 },
                 "4": {
                     "name": "Nine in the fourth place",
-                    "text": "或跃在渊，无咎。",
-                    "image": "或跃在渊，进无咎也。"
+                    "text": "Wavering flight over the depths. No blame."
                 },
                 "5": {
                     "name": "Nine in the fifth place",
-                    "text": "飞龙在天，利见大人。",
-                    "image": "飞龙在天，大人造也。"
+                    "text": "Flying dragon in the heavens. It furthers one to see the great man."
                 },
                 "6": {
                     "name": "Nine at the top",
-                    "text": "亢龙有悔。",
-                    "image": "亢龙有悔，盈不可久也。"
+                    "text": "Arrogant dragon will have cause to repent."
                 }
             },
             "use": {
                 "name": "All the lines are nines",
-                "text": "见群龙无首，吉。",
-                "image": "天德不可为首也。"
+                "text": "There appears a flight of dragons without heads. Good fortune."            
             }
         },
         "(0, 0, 0, 0, 0, 0)": {
-            "name": "坤",
-            "text": "元亨，利牝马之贞。君子有攸往，先迷后得主，利西南得朋，东北丧朋。安贞，吉。",
-            "image": "地势坤，君子以厚德载物。",
+            "name": "K'un / The Receptive",
+            "text": "THE RECEPTIVE brings about sublime success. Furthering through the perseverance of a mare. If the superior man undertakes something and tries to lead, He goes astray; But if he follows, he finds guidance. It is favourable to find friends in the west and south, To forego friends in the east and north. Quiet perseverance brings good fortune.",
+            "image": "The earth's condition is receptive devotion. Thus the superior man who has breadth of character. Carries the outer world.",
             "lines": {
                 "1": {
                     "name": "Six at the beginning",
-                    "text": "履霜，坚冰至。",
-                    "image": "履霜坚冰至，阴始凝也。"
+                    "text": "When there is hoarfrost underfoot, solid ice is not far off."
                 },
                 "2": {
                     "name": "Six in the second place",
-                    "text": "直，方，大，不习无不利。",
-                    "image": "直方大不习，中正无邪也。"
+                    "text": "Straight, square, great. Without purpose, yet nothing remains unfurthered."
                 },
                 "3": {
                     "name": "Six in the third place",
-                    "text": "含章可贞。或从王事，无成有终。",
-                    "image": "含章可贞，以时发也。或从王事，知光大也。"
+                    "text": "Hidden lines. One is able to remain persevering. If by chance you are in the service of a king, seek not works, but bring to completion."
                 },
                 "4": {
                     "name": "Six in the fourth place",
-                    "text": "括囊；无咎，无誉。",
-                    "image": "括囊无咎，慎不害也。无誉，未受命也。"
+                    "text": "A tied-up sack. No blame, no praise."
                 },
                 "5": {
                     "name": "Six in the fifth place",
-                    "text": "黄裳，元吉。",
-                    "image": "黄裳元吉，文在中也。"
+                    "text": "A yellow lower garment brings supreme good fortune."
                 },
                 "6": {
                     "name": "Six at the top",
-                    "text": "龙战于野，其血玄黄。",
-                    "image": "龙战于野，其道穷也。"
+                    "text": "Dragons fight in the meadow. Their blood is black and yellow."
                 }
             },
             "use": {
-                "name": "用六",
-                "text": "利永贞。",
-                "image": "用六永贞，以大终也。"
+                "name": "All lines are sixes",
+                "text": "Lasting perseverance furthers."
             }
         },
         "(1, 0, 0, 0, 1, 0)": {
-            "name": "屯",
-            "text": "元亨，利贞，勿用有攸往，利建侯。",
-            "image": "云雷屯；君子以经纶。",
+            "name": "Chun / Difficulty at the Beginning",
+            "text": "DIFFICULTY AT THE BEGINNING works supreme success, furthering through perseverance. Nothing should be undertaken. It furthers one to appoint helpers.",
+            "image": "Clouds and thunder: The image of DIFFICULTY AT THE BEGINNING. Thus the superior man brings order out of confusion.",
             "lines": {
                 "1": {
                     "name": "Nine at the beginning",
-                    "text": "磐桓，利居贞，利建侯。",
-                    "image": "虽磐桓，志行正也。以贵下贱，大得民也。"
+                    "text": "Hesitation and hindrance. It furthers one to remain persevering. It furthers one to appoint helpers."
                 },
                 "2": {
                     "name": "Six in the second place",
-                    "text": "屯如邅如，乘马班如。匪寇婚媾，女子贞不字，十年乃字。",
-                    "image": "Six in the second之难，乘刚也。十年乃字，反常也。"
+                    "text": "Difficulties pile up. Horse and wagon part. He is not a robber; He wants to woo when the time comes. The maiden is chaste. She does not pledge herself. Ten years--then she pledges herself."
                 },
                 "3": {
                     "name": "Six in the third place",
-                    "text": "即鹿无虞，惟入于林中，君子几不如舍，往吝。",
-                    "image": "即鹿无虞，以纵禽也。君子舍之，往吝穷也。"
+                    "text": "Whoever hunts deer without the forester only loses his way in the forest. The superior man understands the signs of the time and prefers to desist. To go on brings humiliation."
                 },
                 "4": {
                     "name": "Nine in the fourth place",
-                    "text": "乘马班如，求婚媾，往吉，无不利。",
-                    "image": "求而往，明也。"
+                    "text": "Horse and wagon part. Strive for union. To go brings good fortune. Everything acts to further."
                 },
                 "5": {
                     "name": "Nine in the fifth place",
-                    "text": "屯其膏，小贞吉，大贞凶。",
-                    "image": "屯其膏，施未光也。"
+                    "text": "Difficulties in blessing. A little perseverance brings good fortune. Great perseverance brings misfortune."
                 },
                 "6": {
                     "name": "Six at the top",
-                    "text": "乘马班如，泣血涟如。",
-                    "image": "泣血涟如，何可长也。"
+                    "text": "Horse and wagon part. Bloody tears flow."
                 }
             }
         },
         "(0, 1, 0, 0, 0, 1)": {
-            "name": "蒙",
-            "text": "亨。匪我求童蒙，童蒙求我。初筮告，再三渎，渎则不告。利贞。",
-            "image": "山下出泉，蒙；君子以果行育德。",
+            "name": "Meng / Youthful Folly",
+            "text": "YOUTHFUL FOLLY has success. It is not I who seek the young fool; the young fool seeks me. At the first oracle I inform him. If he asks two or three times, it is importunity. If he importunes, I give him no information. Perseverance furthers.",
+            "image": "A spring wells up at the foot of the mountain: The image of YOUTH. Thus the superior man fosters his character by thoroughness in all that he does.",
             "lines": {
                 "1": {
-                    "name": "初六",
-                    "text": "发蒙，利用刑人，用说桎梏，以往吝。",
-                    "image": "利用刑人，以正法也。"
+                    "name": "Six at the beginning",
+                    "text": "To make a fool develop, it furthers one to apply discipline. The fetters should be removed. To go on in this way bring humiliation."
                 },
                 "2": {
                     "name": "Nine in the second place",
-                    "text": "包蒙，吉。纳妇，吉。子克家。",
-                    "image": "子克家，刚柔接也。"
+                    "text": "To bear with fools in kindliness brings good fortune. To know how to take women brings good fortune. The son is capable of taking charge of the household."
                 },
                 "3": {
                     "name": "Six in the third place",
-                    "text": "勿用取女，见金夫，不有躬，无攸利。",
-                    "image": "勿用取女，行不顺也。"
+                    "text": "Take not a maiden who. When she sees a man of bronze, Loses possession of herself. Nothing furthers."
                 },
                 "4": {
                     "name": "Six in the fourth place",
-                    "text": "困蒙，吝。",
-                    "image": "困蒙之吝，独远实也。"
+                    "text": "Entangled folly bring humiliation."
                 },
                 "5": {
                     "name": "Six in the fifth place",
-                    "text": "童蒙，吉。",
-                    "image": "童蒙之吉，顺以巽也。"
+                    "text": "Childlike folly brings good fortune."
                 },
                 "6": {
                     "name": "Nine at the top",
-                    "text": "击蒙，不利为寇，利御寇。",
-                    "image": "利用御寇，上下顺也。"
+                    "text": "In punishing folly it does not further one to commit transgressions. The only thing that furthers Is to prevent transgressions."
                 }
             }
         },
@@ -201,7 +175,7 @@
             "image": "天与水违行，讼；君子以作事谋始。",
             "lines": {
                 "1": {
-                    "name": "初六",
+                    "name": "Six at the beginning",
                     "text": "不永所事，小有言，终吉。",
                     "image": "不永所事，讼不可长也。虽有小言，其辩明也。"
                 },
@@ -238,7 +212,7 @@
             "image": "地中有水，师；君子以容民畜众。",
             "lines": {
                 "1": {
-                    "name": "初六",
+                    "name": "Six at the beginning",
                     "text": "师出以律，否臧凶。",
                     "image": "师出以律，失律凶也。"
                 },
@@ -275,9 +249,9 @@
             "image": "地上有水，比；先王以建万国，亲诸侯。",
             "lines": {
                 "1": {
-                    "name": "初六",
+                    "name": "Six at the beginning",
                     "text": "有孚，比之，无咎。有孚盈缶，终来有他，吉。",
-                    "image": "比之初六，有他吉也。"
+                    "image": "比之Six at the beginning，有他吉也。"
                 },
                 "2": {
                     "name": "Six in the second place",
@@ -423,7 +397,7 @@
             "image": "天地不交，否；君子以俭德辟难，不可荣以禄。",
             "lines": {
                 "1": {
-                    "name": "初六",
+                    "name": "Six at the beginning",
                     "text": "拔茅茹，以其汇，贞吉亨。",
                     "image": "拔茅贞吉，志在君也。"
                 },
@@ -534,7 +508,7 @@
             "image": "地中有山，谦；君子以裒多益寡，称物平施。",
             "lines": {
                 "1": {
-                    "name": "初六",
+                    "name": "Six at the beginning",
                     "text": "谦谦君子，用涉大川，吉。",
                     "image": "谦谦君子，卑以自牧也。"
                 },
@@ -571,9 +545,9 @@
             "image": "雷出地奋，豫。先王以作乐崇德，殷荐之上帝，以配祖考。",
             "lines": {
                 "1": {
-                    "name": "初六",
+                    "name": "Six at the beginning",
                     "text": "鸣豫，凶。",
-                    "image": "初六鸣豫，志穷凶也。"
+                    "image": "Six at the beginning鸣豫，志穷凶也。"
                 },
                 "2": {
                     "name": "Six in the second place",
@@ -608,7 +582,7 @@
             "image": "泽中有雷，随；君子以向晦入宴息。",
             "lines": {
                 "1": {
-                    "name": "初六",
+                    "name": "Six at the beginning",
                     "text": "官有渝，贞吉。出门交有功。",
                     "image": "官有渝，从正吉也。出门交有功，不失也。"
                 },
@@ -645,7 +619,7 @@
             "image": "山下有风，蛊；君子以振民育德。",
             "lines": {
                 "1": {
-                    "name": "初六",
+                    "name": "Six at the beginning",
                     "text": "干父之蛊，有子，考无咎，厉终吉。",
                     "image": "干父之蛊，意承考也。"
                 },
@@ -682,7 +656,7 @@
             "image": "泽上有地，临；君子以教思无穷，容保民无疆。",
             "lines": {
                 "1": {
-                    "name": "初六",
+                    "name": "Six at the beginning",
                     "text": "咸临，贞吉。",
                     "image": "咸临贞吉，志行正也。"
                 },
@@ -719,9 +693,9 @@
             "image": "风行地上，观；先王以省方，观民设教。",
             "lines": {
                 "1": {
-                    "name": "初六",
+                    "name": "Six at the beginning",
                     "text": "童观，小人无咎，君子吝。",
-                    "image": "初六童观，小人道也。"
+                    "image": "Six at the beginning童观，小人道也。"
                 },
                 "2": {
                     "name": "Six in the second place",
@@ -830,7 +804,7 @@
             "image": "山附地上，剥；上以厚下，安宅。",
             "lines": {
                 "1": {
-                    "name": "初六",
+                    "name": "Six at the beginning",
                     "text": "剥床以足，蔑贞凶。",
                     "image": "剥床以足，以灭下也。"
                 },
@@ -1015,7 +989,7 @@
             "image": "泽灭木，大过；君子以独立不惧，遁世无闷。",
             "lines": {
                 "1": {
-                    "name": "初六",
+                    "name": "Six at the beginning",
                     "text": "藉用白茅，无咎。",
                     "image": "藉用白茅，柔在下也。"
                 },
@@ -1052,7 +1026,7 @@
             "image": "水洊至，习坎；君子以常德行，习教事。",
             "lines": {
                 "1": {
-                    "name": "初六",
+                    "name": "Six at the beginning",
                     "text": "习坎，入于坎窞，凶。",
                     "image": "习坎入坎，失道凶也。"
                 },
@@ -1126,7 +1100,7 @@
             "image": "山上有泽，咸；君子以虚受人。",
             "lines": {
                 "1": {
-                    "name": "初六",
+                    "name": "Six at the beginning",
                     "text": "咸其拇。",
                     "image": "咸其拇，志在外也。"
                 },
@@ -1163,7 +1137,7 @@
             "image": "雷风恒；君子以立不易方。",
             "lines": {
                 "1": {
-                    "name": "初六",
+                    "name": "Six at the beginning",
                     "text": "浚恒，贞凶，无攸利。",
                     "image": "浚恒之凶，始求深也。"
                 },
@@ -1200,7 +1174,7 @@
             "image": "天下有山，遁；君子以远小人，不恶而严。",
             "lines": {
                 "1": {
-                    "name": "初六",
+                    "name": "Six at the beginning",
                     "text": "遁尾，厉，勿用有攸往。",
                     "image": "遁尾之厉，不往何灾也。"
                 },
@@ -1274,7 +1248,7 @@
             "image": "明出地上，晋；君子以自昭明德。",
             "lines": {
                 "1": {
-                    "name": "初六",
+                    "name": "Six at the beginning",
                     "text": "晋如，摧如，贞吉。罔孚，裕无咎。",
                     "image": "晋如，摧如；独行正也。裕无咎；未受命也。"
                 },
@@ -1422,7 +1396,7 @@
             "image": "山上有水，蹇；君子以反身修德。",
             "lines": {
                 "1": {
-                    "name": "初六",
+                    "name": "Six at the beginning",
                     "text": "往蹇，来誉。",
                     "image": "往蹇来誉，宜待也。"
                 },
@@ -1459,7 +1433,7 @@
             "image": "雷雨作，解；君子以赦过宥罪。",
             "lines": {
                 "1": {
-                    "name": "初六",
+                    "name": "Six at the beginning",
                     "text": "无咎。",
                     "image": "刚柔之际，义无咎也。"
                 },
@@ -1607,7 +1581,7 @@
             "image": "天下有风，姤；后以施命诰四方。",
             "lines": {
                 "1": {
-                    "name": "初六",
+                    "name": "Six at the beginning",
                     "text": "系于金柅，贞吉，有攸往，见凶，羸豕孚蹢躅。",
                     "image": "系于金柅，柔道牵也。"
                 },
@@ -1644,7 +1618,7 @@
             "image": "泽上于地，萃；君子以除戎器，戒不虞。",
             "lines": {
                 "1": {
-                    "name": "初六",
+                    "name": "Six at the beginning",
                     "text": "有孚不终，乃乱乃萃，若号，一握为笑，勿恤，往无咎。",
                     "image": "乃乱乃萃，其志乱也。"
                 },
@@ -1681,7 +1655,7 @@
             "image": "地中生木，升；君子以顺德，积小以高大。",
             "lines": {
                 "1": {
-                    "name": "初六",
+                    "name": "Six at the beginning",
                     "text": "允升，大吉。",
                     "image": "允升大吉，上合志也。"
                 },
@@ -1718,7 +1692,7 @@
             "image": "泽无水，困；君子以致命遂志。",
             "lines": {
                 "1": {
-                    "name": "初六",
+                    "name": "Six at the beginning",
                     "text": "臀困于株木，入于幽谷，三岁不见。",
                     "image": "入于幽谷，幽不明也。"
                 },
@@ -1755,7 +1729,7 @@
             "image": "木上有水，井；君子以劳民劝相。",
             "lines": {
                 "1": {
-                    "name": "初六",
+                    "name": "Six at the beginning",
                     "text": "井泥不食，旧井无禽。",
                     "image": "井泥不食，下也。旧井无禽，时舍也。"
                 },
@@ -1829,7 +1803,7 @@
             "image": "木上有火，鼎；君子以正位凝命。",
             "lines": {
                 "1": {
-                    "name": "初六",
+                    "name": "Six at the beginning",
                     "text": "鼎颠趾，利出否，得妾以其子，无咎。",
                     "image": "鼎颠趾，未悖也。利出否，以从贵也。"
                 },
@@ -1903,7 +1877,7 @@
             "image": "兼山，艮；君子以思不出其位。",
             "lines": {
                 "1": {
-                    "name": "初六",
+                    "name": "Six at the beginning",
                     "text": "艮其趾，无咎，利永贞。",
                     "image": "艮其趾，未失正也。"
                 },
@@ -1940,7 +1914,7 @@
             "image": "山上有木，渐；君子以居贤德，善俗。",
             "lines": {
                 "1": {
-                    "name": "初六",
+                    "name": "Six at the beginning",
                     "text": "鸿渐于干，小子厉，有言，无咎。",
                     "image": "小子之厉，义无咎也。"
                 },
@@ -2054,7 +2028,7 @@
             "tuan": "旅，小亨，柔得中乎外，而顺乎刚，止而丽乎明，是以小亨，旅贞吉也。旅之时义大矣哉！",
             "lines": {
                 "1": {
-                    "name": "初六",
+                    "name": "Six at the beginning",
                     "text": "旅琐琐，斯其所取灾。",
                     "image": "旅琐琐，志穷灾也。"
                 },
@@ -2092,7 +2066,7 @@
             "tuan": "重巽以申命，刚巽乎中正而志行。柔皆顺乎刚，是以小亨，利有攸往，利见大人。",
             "lines": {
                 "1": {
-                    "name": "初六",
+                    "name": "Six at the beginning",
                     "text": "进退，利武人之贞。",
                     "image": "进退，志疑也。利武人之贞，志治也。"
                 },
@@ -2168,9 +2142,9 @@
             "tuan": "涣，亨。刚来而不穷，柔得位乎外而上同。王假有庙，王乃在中也。利涉大川，乘木有功也。",
             "lines": {
                 "1": {
-                    "name": "初六",
+                    "name": "Six at the beginning",
                     "text": "用拯马壮，吉。",
-                    "image": "初六之吉，顺也。"
+                    "image": "Six at the beginning之吉，顺也。"
                 },
                 "2": {
                     "name": "Nine in the second place",
@@ -2282,7 +2256,7 @@
             "tuan": "小过，小者过而亨也。过以利贞，与时行也。柔得中，是以小事吉也。刚失位而不中，是以不可大事也。有飞鸟之象焉，有飞鸟遗之音，不宜上宜下，大吉；上逆而下顺也。",
             "lines": {
                 "1": {
-                    "name": "初六",
+                    "name": "Six at the beginning",
                     "text": "飞鸟以凶。",
                     "image": "飞鸟以凶，不可如何也。"
                 },
@@ -2358,7 +2332,7 @@
             "tuan": "亨；柔得中也。小狐汔济，未出中也。濡其尾，无攸利；不续终也。虽不当位，刚柔应也。",
             "lines": {
                 "1": {
-                    "name": "初六",
+                    "name": "Six at the beginning",
                     "text": "濡其尾，吝。",
                     "image": "濡其尾，亦不知极也。"
                 },
