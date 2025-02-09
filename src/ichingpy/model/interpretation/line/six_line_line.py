@@ -1,5 +1,3 @@
-from zmq import has
-
 from ichingpy.enum.branch import EarthlyBranch
 from ichingpy.enum.language import Language
 from ichingpy.enum.role import HexagramRole
