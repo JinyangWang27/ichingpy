@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "ichingpy"
-version = "0.1.9"
+version = "0.1.10"
 requires-python = ">=3.10"
 description = "I-Ching objects construction using Python type hints."
 readme = "README.md"
