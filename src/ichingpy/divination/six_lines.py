@@ -3,11 +3,13 @@ from ichingpy.divination.base import DivinationEngineBase
 from ichingpy.enum import HeavenlyStem
 from ichingpy.enum.branch import EarthlyBranch
 from ichingpy.enum.palace import Palace
+from ichingpy.enum.role import HexagramRole
 from ichingpy.enum.six_relative import SixRelative
 from ichingpy.model.hexagram import Hexagram
 from ichingpy.model.interpretation.hexagram.six_line_hexagram import SixLineHexagramInterp
 from ichingpy.model.interpretation.line.six_line_line import SixLineLineInterp
 from ichingpy.model.interpretation.trigram.six_line_trigram import SixLineTrigramInterp
+from ichingpy.model.trigram import Trigram
 
 
 class SixLinesDivinationEngine(DivinationEngineBase):
@@ -33,6 +35,7 @@ class SixLinesDivinationEngine(DivinationEngineBase):
     def execute(self, hexagram: Hexagram):
         interp = self._execute_stem_branch(hexagram)
         interp_transformed = self._execute_stem_branch(hexagram.transformed)
+        self._assign_role(interp)
         self._assign_six_relatives(interp)
         self._assign_six_relatives(interp_transformed, self_palace=interp.palace)
         interp.transformed = interp_transformed
@@ -101,6 +104,33 @@ class SixLinesDivinationEngine(DivinationEngineBase):
             self_palace = hexagram.palace
         for line in hexagram.lines:
             line.relative = self._get_relative_for_line(line, self_palace)
+
+    def _assign_role(self, hexagram: SixLineHexagramInterp) -> None:
+        transform_order = [0, 1, 2, 3, 4, 3, 2]
+        hexagram_values = [line.status.value % 2 for line in hexagram.lines]
+        self_palace = hexagram.palace
+        self_palace_trigram_value = Trigram.from_pre_trigram_number(self_palace.value).value
+        self_palace_hex_values = [v % 2 for v in self_palace_trigram_value] * 2
+
+        idx = 0
+        while not all(hv == pv for hv, pv in zip(hexagram_values, self_palace_hex_values)):
+            if idx > 7:  # should never enter here
+                raise ValueError("Cannot find the correct subject/obejct for the hexagram")
+
+            if idx == 6:  # 归魂卦
+                for i in range(3):
+                    self_palace_hex_values[i] = 1 - self_palace_hex_values[i]
+            else:
+                self_palace_hex_values[transform_order[idx]] = 1 - self_palace_hex_values[transform_order[idx]]
+            idx += 1
+
+        subject_line_idx = transform_order[idx - 1] if idx > 0 else 5
+        if subject_line_idx > 2:
+            hexagram.outer.lines[subject_line_idx - 3].role = HexagramRole.SUBJECT
+            hexagram.inner.lines[subject_line_idx - 3].role = HexagramRole.OBJECT
+        else:
+            hexagram.inner.lines[subject_line_idx].role = HexagramRole.SUBJECT
+            hexagram.outer.lines[subject_line_idx].role = HexagramRole.OBJECT
 
     def _get_relative_for_line(self, line: SixLineLineInterp, self_palace: Palace) -> SixRelative:
         match line.branch.phase:
