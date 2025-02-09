@@ -25,12 +25,12 @@ class SixLineLineInterp(LineInterpretationBase):
                 stem = f"{self.stem.name.ljust(4)} ({self.stem.value}) " if has_stem else ""
                 branch = f"{self.branch.name_en.ljust(4)} " if has_branch else ""
                 relative = f"{self.relative.name.ljust(9)}" if has_relative else ""
-                role = f"{self.role.name.ljust(7)}" if self.role is not None else ""
+                role = f" {self.role.name.ljust(7)}" if self.role is not None else ""
             case Language.CHINESE:
                 stem = f"{self.stem.label} " if has_stem else ""
                 branch = f"{self.branch.label_with_phase} " if has_branch else ""
                 relative = f"{self.relative.label} " if has_relative else ""
-                role = f"{self.role.label} " if self.role is not None else ""
+                role = f" {self.role.label} " if self.role is not None else ""
 
         representation = f"{relative}{stem}{branch}{representation}{role}"
         return representation
