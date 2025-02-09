@@ -75,9 +75,9 @@ gou
 """
 PARENTS  Ren  (9) Xu   (11) EARTH -----
 SIBLINGS Ren  (9) Shen (9 ) METAL -----
-OFFICIALSRen  (9) Wu   (7 ) FIRE  -----
+OFFICIALSRen  (9) Wu   (7 ) FIRE  ----- OBJECT
 SIBLINGS Xin  (8) You  (10) METAL -----
 CHILDREN Xin  (8) Hai  (12) WATER -----
-PARENTS  Xin  (8) Chou (2 ) EARTH -- --
+PARENTS  Xin  (8) Chou (2 ) EARTH -- -- SUBJECT
 """
 ```

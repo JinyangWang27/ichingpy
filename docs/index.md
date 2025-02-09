@@ -56,12 +56,12 @@ assigner.execute(gou)
 gou
 
 """
-壬 戌土 -----
-壬 申金 -----
-壬 午火 -----
-辛 酉金 -----
-辛 亥水 -----
-辛 丑土 -- --
+父母 壬 戌土 -----
+兄弟 壬 申金 -----
+官鬼 壬 午火 ----- 应 
+兄弟 辛 酉金 -----
+子孙 辛 亥水 -----
+父母 辛 丑土 -- -- 世
 """
 ```
 Switch display language to English
@@ -69,12 +69,12 @@ Switch display language to English
 icp.set_language("en")
 gou
 """
-Geng (7) Xu   (11) EARTH -- --
-Geng (7) Shen (9 ) METAL -- -- X -> -----
-Geng (7) Wu   (7 ) FIRE  -----
-Jia  (1) Chen (5 ) EARTH -----
-Jia  (1) Yin  (3 ) WOOD  -----
-Jia  (1) Zi   (1 ) WATER -----
+PARENTS  Ren  (9) Xu   (11) EARTH -----
+SIBLINGS Ren  (9) Shen (9 ) METAL -----
+OFFICIALSRen  (9) Wu   (7 ) FIRE  ----- OBJECT 
+SIBLINGS Xin  (8) You  (10) METAL -----
+CHILDREN Xin  (8) Hai  (12) WATER -----
+PARENTS  Xin  (8) Chou (2 ) EARTH -- -- SUBJECT
 """
 ```
 Background knowledge: How to pair [Heaven Stems](https://en.wikipedia.org/wiki/Heavenly_Stems) and [Earthly Branches](https://en.wikipedia.org/wiki/Earthly_Branches) to [Sexagenary Cycle](https://en.wikipedia.org/wiki/Sexagenary_cycle)?
