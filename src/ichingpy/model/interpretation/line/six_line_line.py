@@ -4,6 +4,7 @@ from ichingpy.enum.role import HexagramRole
 from ichingpy.enum.six_relative import SixRelative
 from ichingpy.enum.stem import HeavenlyStem
 from ichingpy.model.interpretation.line.base import LineInterpretationBase
+from ichingpy.model.sexagenary_cycle import SexagenaryCycle
 
 
 class SixLineLineInterp(LineInterpretationBase):
@@ -75,3 +76,14 @@ class SixLineLineInterp(LineInterpretationBase):
     def role(self, value: HexagramRole) -> None:
         """Set the role (世应) of the line in the hexagram."""
         self._role = value
+
+    def is_kong_wang(self, day_pillar: SexagenaryCycle) -> bool:
+        """Return True if this line's branch is void (空亡) relative to the day pillar.
+
+        Args:
+            day_pillar (SexagenaryCycle): The day pillar determining the current 旬.
+
+        Returns:
+            bool: True if the line's branch is one of the two void branches.
+        """
+        return self.branch in day_pillar.kong_wang()
