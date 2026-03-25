@@ -1,4 +1,7 @@
+import pytest
+
 from ichingpy.enum import EarthlyBranch, HeavenlyStem
+from ichingpy.enum.five_phase import FivePhase
 from ichingpy.model.sexagenary_cycle import SexagenaryCycle
 
 
@@ -41,3 +44,65 @@ def test_sexagenary_cycle():
 def test_sexagenary_cycle_from_int():
     assert SexagenaryCycle.from_int(1) == SexagenaryCycle(HeavenlyStem.Jia, EarthlyBranch.Zi)
     assert SexagenaryCycle.from_int(61) == SexagenaryCycle(HeavenlyStem.Jia, EarthlyBranch.Zi)
+
+
+@pytest.mark.parametrize(
+    "a, b",
+    [
+        (EarthlyBranch.Zi, EarthlyBranch.Chou),
+        (EarthlyBranch.Yin, EarthlyBranch.Hai),
+        (EarthlyBranch.Mao, EarthlyBranch.Xu),
+        (EarthlyBranch.Chen, EarthlyBranch.You),
+        (EarthlyBranch.Si, EarthlyBranch.Shen),
+        (EarthlyBranch.Wu, EarthlyBranch.Wei),
+    ],
+)
+def test_six_combinations(a: EarthlyBranch, b: EarthlyBranch):
+    assert a.combines_with == b
+    assert b.combines_with == a
+    assert a.combines(b)
+    assert b.combines(a)
+    assert not a.combines(a)
+
+
+@pytest.mark.parametrize(
+    "a, b",
+    [
+        (EarthlyBranch.Zi, EarthlyBranch.Wu),
+        (EarthlyBranch.Chou, EarthlyBranch.Wei),
+        (EarthlyBranch.Yin, EarthlyBranch.Shen),
+        (EarthlyBranch.Mao, EarthlyBranch.You),
+        (EarthlyBranch.Chen, EarthlyBranch.Xu),
+        (EarthlyBranch.Si, EarthlyBranch.Hai),
+    ],
+)
+def test_six_clashes(a: EarthlyBranch, b: EarthlyBranch):
+    assert a.clashes_with == b
+    assert b.clashes_with == a
+    assert a.clashes(b)
+    assert b.clashes(a)
+    assert not a.clashes(a)
+
+
+@pytest.mark.parametrize(
+    "branch, other1, other2, phase",
+    [
+        (EarthlyBranch.Shen, EarthlyBranch.Zi, EarthlyBranch.Chen, FivePhase.WATER),
+        (EarthlyBranch.Zi, EarthlyBranch.Shen, EarthlyBranch.Chen, FivePhase.WATER),
+        (EarthlyBranch.Chen, EarthlyBranch.Shen, EarthlyBranch.Zi, FivePhase.WATER),
+        (EarthlyBranch.Hai, EarthlyBranch.Mao, EarthlyBranch.Wei, FivePhase.WOOD),
+        (EarthlyBranch.Mao, EarthlyBranch.Hai, EarthlyBranch.Wei, FivePhase.WOOD),
+        (EarthlyBranch.Wei, EarthlyBranch.Hai, EarthlyBranch.Mao, FivePhase.WOOD),
+        (EarthlyBranch.Yin, EarthlyBranch.Wu, EarthlyBranch.Xu, FivePhase.FIRE),
+        (EarthlyBranch.Wu, EarthlyBranch.Yin, EarthlyBranch.Xu, FivePhase.FIRE),
+        (EarthlyBranch.Xu, EarthlyBranch.Yin, EarthlyBranch.Wu, FivePhase.FIRE),
+        (EarthlyBranch.Si, EarthlyBranch.You, EarthlyBranch.Chou, FivePhase.METAL),
+        (EarthlyBranch.You, EarthlyBranch.Si, EarthlyBranch.Chou, FivePhase.METAL),
+        (EarthlyBranch.Chou, EarthlyBranch.Si, EarthlyBranch.You, FivePhase.METAL),
+    ],
+)
+def test_three_harmony(
+    branch: EarthlyBranch, other1: EarthlyBranch, other2: EarthlyBranch, phase: FivePhase
+):
+    result = branch.three_harmony
+    assert result == (other1, other2, phase)
