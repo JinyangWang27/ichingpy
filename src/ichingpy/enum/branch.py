@@ -3,6 +3,39 @@ from typing import Self
 from ichingpy.enum.five_phase import FivePhase
 from ichingpy.enum.mixed_enum import MixEnum
 
+COMBINATION_MAPPING: dict[str, str] = {
+    "Zi": "Chou", "Chou": "Zi",
+    "Yin": "Hai", "Hai": "Yin",
+    "Mao": "Xu", "Xu": "Mao",
+    "Chen": "You", "You": "Chen",
+    "Si": "Shen", "Shen": "Si",
+    "Wu": "Wei", "Wei": "Wu",
+}
+
+CLASH_MAPPING: dict[str, str] = {
+    "Zi": "Wu", "Wu": "Zi",
+    "Chou": "Wei", "Wei": "Chou",
+    "Yin": "Shen", "Shen": "Yin",
+    "Mao": "You", "You": "Mao",
+    "Chen": "Xu", "Xu": "Chen",
+    "Si": "Hai", "Hai": "Si",
+}
+
+THREE_HARMONY_MAPPING: dict[str, tuple[str, str, str]] = {
+    "Shen": ("Zi", "Chen", "WATER"),
+    "Zi": ("Shen", "Chen", "WATER"),
+    "Chen": ("Shen", "Zi", "WATER"),
+    "Hai": ("Mao", "Wei", "WOOD"),
+    "Mao": ("Hai", "Wei", "WOOD"),
+    "Wei": ("Hai", "Mao", "WOOD"),
+    "Yin": ("Wu", "Xu", "FIRE"),
+    "Wu": ("Yin", "Xu", "FIRE"),
+    "Xu": ("Yin", "Wu", "FIRE"),
+    "Si": ("You", "Chou", "METAL"),
+    "You": ("Si", "Chou", "METAL"),
+    "Chou": ("Si", "You", "METAL"),
+}
+
 PHASE_MAPPING: dict[str, FivePhase] = {
     "Zi": FivePhase.WATER,
     "Chou": FivePhase.EARTH,
@@ -86,3 +119,27 @@ class EarthlyBranch(MixEnum):
 
     def __rsub__(self, other: Self | int) -> "EarthlyBranch":
         return self.__sub__(other)
+
+    @property
+    def combines_with(self) -> "EarthlyBranch":
+        """Return the EarthlyBranch that this one combines with (六合)."""
+        return EarthlyBranch[COMBINATION_MAPPING[self.name]]
+
+    def combines(self, other: "EarthlyBranch") -> bool:
+        """Check if this branch combines with another (六合)."""
+        return self.combines_with == other
+
+    @property
+    def clashes_with(self) -> "EarthlyBranch":
+        """Return the EarthlyBranch that this one clashes with (六冲)."""
+        return EarthlyBranch[CLASH_MAPPING[self.name]]
+
+    def clashes(self, other: "EarthlyBranch") -> bool:
+        """Check if this branch clashes with another (六冲)."""
+        return self.clashes_with == other
+
+    @property
+    def three_harmony(self) -> tuple["EarthlyBranch", "EarthlyBranch", FivePhase]:
+        """Return the other two branches and resulting phase of the three harmony group (三合局)."""
+        b1, b2, phase = THREE_HARMONY_MAPPING[self.name]
+        return (EarthlyBranch[b1], EarthlyBranch[b2], FivePhase[phase])
