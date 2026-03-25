@@ -35,6 +35,10 @@ def test_sexagenary_cycle_can_add():
             (EarthlyBranch.Xu, EarthlyBranch.Hai),
         ),  # 甲子旬 → 戌亥空
         (
+            SexagenaryCycle(HeavenlyStem.Yi, EarthlyBranch.Chou),
+            (EarthlyBranch.Xu, EarthlyBranch.Hai),
+        ),  # 甲子旬 → 戌亥空
+        (
             SexagenaryCycle(HeavenlyStem.Jia, EarthlyBranch.Xu),
             (EarthlyBranch.Shen, EarthlyBranch.You),
         ),  # 甲戌旬 → 申酉空

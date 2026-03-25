@@ -20,7 +20,7 @@ class MixEnum(Enum):
     @property
     def value(self) -> int:
         """int: The integer value of the Enum member."""
-        return self._value_  # type: ignore[return-value]
+        return self._value_  
 
     @property
     def label(self) -> str:
