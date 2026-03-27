@@ -5,6 +5,7 @@ from ichingpy.enum.branch import EarthlyBranch
 from ichingpy.enum.palace import Palace
 from ichingpy.enum.role import HexagramRole
 from ichingpy.enum.six_relative import SixRelative
+from ichingpy.enum.six_spirit import SixSpirit
 from ichingpy.model.hexagram import Hexagram
 from ichingpy.model.interpretation.hexagram.six_line_hexagram import SixLineHexagramInterp
 from ichingpy.model.interpretation.line.six_line_line import SixLineLineInterp
@@ -16,6 +17,19 @@ class SixLinesDivinationEngine(DivinationEngineBase):
     """Class to assign stems and branches to a hexagram.
     京房六爻 装卦器
     """
+
+    STARTING_SPIRIT_MAPPING = {
+        HeavenlyStem.Jia: SixSpirit.AZURE_DRAGON,
+        HeavenlyStem.Yi: SixSpirit.AZURE_DRAGON,
+        HeavenlyStem.Bing: SixSpirit.VERMILION_BIRD,
+        HeavenlyStem.Ding: SixSpirit.VERMILION_BIRD,
+        HeavenlyStem.Wu: SixSpirit.HOOK_KIRIN,
+        HeavenlyStem.Ji: SixSpirit.FLYING_SNAKE,
+        HeavenlyStem.Geng: SixSpirit.WHITE_TIGER,
+        HeavenlyStem.Xin: SixSpirit.WHITE_TIGER,
+        HeavenlyStem.Ren: SixSpirit.BLACK_TORTOISE,
+        HeavenlyStem.Gui: SixSpirit.BLACK_TORTOISE,
+    }
 
     FIRST_BRANCH_MAPPING = {
         (1, 1, 1): EarthlyBranch.Zi,  # 乾 1 (remainder of sum modulo 2)
@@ -131,6 +145,13 @@ class SixLinesDivinationEngine(DivinationEngineBase):
         else:
             hexagram.inner.lines[subject_line_idx].role = HexagramRole.SUBJECT
             hexagram.outer.lines[subject_line_idx].role = HexagramRole.OBJECT
+
+    def assign_spirits(self, hexagram: SixLineHexagramInterp, day_stem: HeavenlyStem) -> None:
+        """Assign six spirits (六神) to all 6 lines based on the day's Heavenly Stem.
+        装六神"""
+        starting_spirit = self.STARTING_SPIRIT_MAPPING[day_stem]
+        for i, line in enumerate(hexagram.lines):
+            line.spirit = SixSpirit((starting_spirit.value + i - 1) % 6 + 1)
 
     def _get_relative_for_line(self, line: SixLineLineInterp, self_palace: Palace) -> SixRelative:
         match line.branch.phase:
