@@ -5,6 +5,7 @@ from ichingpy.enum import HeavenlyStem
 from ichingpy.enum.branch import EarthlyBranch
 from ichingpy.enum.palace import Palace
 from ichingpy.enum.role import HexagramRole
+from ichingpy.enum.six_spirit import SixSpirit
 from ichingpy.model.hexagram import Hexagram
 from ichingpy.model.interpretation.hexagram.six_line_hexagram import SixLineHexagramInterp
 
@@ -86,3 +87,22 @@ def test_six_line_engine(
 
     assert hexagram.interpretation.get_lines()[role[HexagramRole.SUBJECT]].role == HexagramRole.SUBJECT  # type: ignore
     assert hexagram.interpretation.get_lines()[role[HexagramRole.OBJECT]].role == HexagramRole.OBJECT  # type: ignore
+
+
+def test_assign_spirits_concrete_hexagram(six_line_engine: SixLinesDivinationEngine):
+    # 乾卦 [1,1,1,1,1,1], day_stem=甲 (Jia) → lines get 青龙,朱雀,勾陈,腾蛇,白虎,玄武
+    hexagram = Hexagram.from_binary([1, 1, 1, 1, 1, 1])
+    six_line_engine.execute(hexagram)
+    six_line_engine.assign_spirits(hexagram.interpretation, HeavenlyStem.Jia)
+
+    expected = [
+        SixSpirit.AZURE_DRAGON,
+        SixSpirit.VERMILION_BIRD,
+        SixSpirit.HOOK_KIRIN,
+        SixSpirit.FLYING_SNAKE,
+        SixSpirit.WHITE_TIGER,
+        SixSpirit.BLACK_TORTOISE,
+    ]
+    lines = hexagram.interpretation.get_lines()
+    for i, (line, spirit) in enumerate(zip(lines, expected)):
+        assert line.spirit == spirit, f"Line {i + 1}: expected {spirit}, got {line.spirit}"

@@ -1,5 +1,6 @@
 from ichingpy.enum import EarthlyBranch, HeavenlyStem
 from ichingpy.enum.line_status import LineStatus
+from ichingpy.enum.six_spirit import SixSpirit
 from ichingpy.model.interpretation.line.six_line_line import SixLineLineInterp
 
 
@@ -44,3 +45,14 @@ def test_line_interpretation_repr_with_both_stem_and_branch():
     line_interp.set_language("en")
     assert repr(line_interp) == "Jia  (1) Zi   (1 ) WATER -----"
     line_interp.set_language("zh")
+
+
+def test_spirit_property_unset():
+    line_interp = SixLineLineInterp(status=LineStatus.STATIC_YANG)
+    assert line_interp.spirit is None
+
+
+def test_spirit_property_set():
+    line_interp = SixLineLineInterp(status=LineStatus.STATIC_YANG)
+    line_interp.spirit = SixSpirit.AZURE_DRAGON
+    assert line_interp.spirit == SixSpirit.AZURE_DRAGON
