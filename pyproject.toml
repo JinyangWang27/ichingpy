@@ -32,8 +32,8 @@ package_dir = "src"
 zip_safe = true
 include_package_data = true
 
-[tool.isort]
-line_length = 120
+[tool.ruff]
+line-length = 120
 
 [tool.pytest.ini_options]
 testpaths = "tests/"

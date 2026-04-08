@@ -18,6 +18,11 @@ class MixEnum(Enum):
         return obj
 
     @property
+    def value(self) -> int:
+        """int: The integer value of the Enum member."""
+        return self._value_  
+
+    @property
     def label(self) -> str:
         """str: Represents the string label of the Enum member."""
         return self._label

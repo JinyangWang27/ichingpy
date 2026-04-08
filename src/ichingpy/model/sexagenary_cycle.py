@@ -17,7 +17,7 @@ class SexagenaryCycle:
             stem (HeavenlyStem): The HeavenlyStem to use in the SexagenaryCycle.
             branch (EarthlyBranch): The EarthlyBranch to use in the SexagenaryCycle.
         """
-        if stem.value % 2 != branch.value % 2:
+        if int(stem) % 2 != int(branch) % 2:
             raise ValueError("Invalid combination of HeavenlyStem and EarthlyBranch.")
 
         self.stem = stem
@@ -26,7 +26,7 @@ class SexagenaryCycle:
     @property
     def value(self) -> int:
         """int: Represents the integer value of the SexagenaryCycle."""
-        return (self.stem.value - 1) * 12 + self.branch.value
+        return (int(self.stem) - 1) * 12 + int(self.branch)
 
     @classmethod
     def from_int(cls, value: int) -> Self:
@@ -68,7 +68,9 @@ class SexagenaryCycle:
         """
         if isinstance(other, int):
             return SexagenaryCycle(self.stem + other, self.branch + other)
-        return SexagenaryCycle(self.stem + int(other.stem), self.branch + int(other.branch))
+        return SexagenaryCycle(
+            self.stem + int(other.stem), self.branch + int(other.branch)
+        )
 
     def __radd__(self, other: Self | int) -> "SexagenaryCycle":
         return self.__add__(other)
@@ -95,10 +97,27 @@ class SexagenaryCycle:
         """
         if isinstance(other, int):
             return SexagenaryCycle(self.stem - other, self.branch - other)
-        return SexagenaryCycle(self.stem - int(other.stem), self.branch - int(other.branch))
+        return SexagenaryCycle(
+            self.stem - int(other.stem), self.branch - int(other.branch)
+        )
 
     def __rsub__(self, other: Self | int) -> "SexagenaryCycle":
         return self.__sub__(other)
+
+    def kong_wang(self) -> tuple[EarthlyBranch, EarthlyBranch]:
+        """Return the two void branches (空亡) for the 旬 containing this cycle.
+
+        In each decade (旬) of the 60-cycle, 10 Heavenly Stems pair with 10 of the 12
+        Earthly Branches, leaving 2 branches unpaired — these are 空亡 (void).
+
+        Algorithm: subtract (stem_offset) from branch to find the 旬首 branch,
+        then the two void branches are at offsets +10 and +11 from the 旬首 branch.
+
+        Returns:
+            tuple[EarthlyBranch, EarthlyBranch]: The two void (空亡) branches, in order.
+        """
+        xun_shou_branch = self.branch - (int(self.stem) - 1)
+        return (xun_shou_branch + 10, xun_shou_branch + 11)
 
     @classmethod
     def set_language(cls, language: str) -> None:

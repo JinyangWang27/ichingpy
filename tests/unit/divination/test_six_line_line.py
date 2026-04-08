@@ -1,6 +1,10 @@
+import pytest
+
 from ichingpy.enum import EarthlyBranch, HeavenlyStem
 from ichingpy.enum.line_status import LineStatus
+from ichingpy.enum.six_spirit import SixSpirit
 from ichingpy.model.interpretation.line.six_line_line import SixLineLineInterp
+from ichingpy.model.sexagenary_cycle import SexagenaryCycle
 
 
 def test_line_interpretation_repr():
@@ -44,3 +48,33 @@ def test_line_interpretation_repr_with_both_stem_and_branch():
     line_interp.set_language("en")
     assert repr(line_interp) == "Jia  (1) Zi   (1 ) WATER -----"
     line_interp.set_language("zh")
+
+
+@pytest.mark.parametrize(
+    "line_branch, day_pillar, expected",
+    [
+        # Day in 甲子旬 (甲子 itself) → void = 戌亥
+        (EarthlyBranch.Xu,  SexagenaryCycle(HeavenlyStem.Jia, EarthlyBranch.Zi),  True),
+        (EarthlyBranch.Hai, SexagenaryCycle(HeavenlyStem.Jia, EarthlyBranch.Zi),  True),
+        (EarthlyBranch.Zi,  SexagenaryCycle(HeavenlyStem.Jia, EarthlyBranch.Zi),  False),
+        # Day in 甲戌旬 (乙亥, non-旬首) → void = 申酉
+        (EarthlyBranch.Shen, SexagenaryCycle(HeavenlyStem.Yi, EarthlyBranch.Hai), True),
+        (EarthlyBranch.You,  SexagenaryCycle(HeavenlyStem.Yi, EarthlyBranch.Hai), True),
+        (EarthlyBranch.Xu,   SexagenaryCycle(HeavenlyStem.Yi, EarthlyBranch.Hai), False),
+    ],
+)
+def test_is_kong_wang(line_branch, day_pillar, expected):
+    line = SixLineLineInterp(status=LineStatus.STATIC_YANG)
+    line.branch = line_branch
+    assert line.is_kong_wang(day_pillar) == expected
+
+
+def test_spirit_property_unset():
+    line_interp = SixLineLineInterp(status=LineStatus.STATIC_YANG)
+    assert line_interp.spirit is None
+
+
+def test_spirit_property_set():
+    line_interp = SixLineLineInterp(status=LineStatus.STATIC_YANG)
+    line_interp.spirit = SixSpirit.AZURE_DRAGON
+    assert line_interp.spirit == SixSpirit.AZURE_DRAGON
