@@ -36,7 +36,7 @@ class FivePhase(MixEnum):
         return FivePhase[GENERATE_MAPPING[self.name]]
 
     @property
-    def generated_by(self):
+    def generated_by(self) -> "FivePhase":
         """Return the phase that generates this phase."""
         # Reverse the generates_mapping
         reverse_mapping = {v: k for k, v in GENERATE_MAPPING.items()}
