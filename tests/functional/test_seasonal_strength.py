@@ -91,3 +91,9 @@ class TestSeasonalStrengthMetalMonth:
     def test_dead(self):
         # METAL overcomes WOOD → WOOD is DEAD
         assert FivePhase.WOOD.seasonal_strength(FivePhase.METAL) == SeasonalStrength.DEAD
+
+
+class TestSeasonalStrengthPublicImport:
+    def test_seasonal_strength_importable_from_enum_package(self):
+        from ichingpy.enum import SeasonalStrength
+        assert SeasonalStrength.PROSPEROUS.label == "旺"
