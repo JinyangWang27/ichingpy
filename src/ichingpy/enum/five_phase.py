@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from ichingpy.enum.mixed_enum import MixEnum
 
 # Class-level mapping for "generates", Enum does not allow for ClassVar...
@@ -34,7 +36,7 @@ class FivePhase(MixEnum):
         return FivePhase[GENERATE_MAPPING[self.name]]
 
     @property
-    def generated_by(self):
+    def generated_by(self) -> "FivePhase":
         """Return the phase that generates this phase."""
         # Reverse the generates_mapping
         reverse_mapping = {v: k for k, v in GENERATE_MAPPING.items()}
@@ -51,3 +53,24 @@ class FivePhase(MixEnum):
         # Reverse the overcomes_mapping
         reverse_mapping = {v: k for k, v in OVERCOME_MAPPING.items()}
         return FivePhase[reverse_mapping[self.name]]
+
+    def seasonal_strength(self, month_phase: FivePhase) -> "SeasonalStrength":
+        """Return this phase's elemental strength for the given month phase.
+
+        Args:
+            month_phase: The dominant FivePhase of the current month.
+
+        Returns:
+            SeasonalStrength indicating 旺/相/休/囚/死.
+        """
+        from ichingpy.enum.seasonal_strength import SeasonalStrength
+
+        if self == month_phase:
+            return SeasonalStrength.PROSPEROUS
+        if self == month_phase.generates:
+            return SeasonalStrength.STRONG
+        if self == month_phase.generated_by:
+            return SeasonalStrength.RESTING
+        if self == month_phase.overcome_by:
+            return SeasonalStrength.IMPRISONED
+        return SeasonalStrength.DEAD
