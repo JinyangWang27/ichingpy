@@ -39,15 +39,25 @@ class SexagenaryCycle:
         branch = EarthlyBranch((value - 1) % 12 + 1)
         return cls(stem, branch)
 
+    def format_chinese(self) -> str:
+        """Format the cycle in Chinese notation (e.g. 甲子)."""
+        return f"{self.stem.label}{self.branch.label}"
+
+    def format_english(self) -> str:
+        """Format the cycle in English notation (e.g. Jia(1) Zi(1))."""
+        return f"{self.stem.name}({self.stem.value}) {self.branch.name}({self.branch.value})"
+
     def __repr__(self) -> str:
         """Return a string representation of the SexagenaryCycle.
+
+        The display format depends on the class-level display_language setting.
 
         Returns:
             str: A string representation of the SexagenaryCycle.
         """
         if self.display_language is Language.ENGLISH:
-            return f"{self.stem.name}({self.stem.value}) {self.branch.name}({self.branch.value})"
-        return f"{self.stem.label}{self.branch.label}"
+            return self.format_english()
+        return self.format_chinese()
 
     def __int__(self) -> int:
         """Convert the SexagenaryCycle to an integer.

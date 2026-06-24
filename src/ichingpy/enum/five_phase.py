@@ -11,6 +11,8 @@ GENERATE_MAPPING: dict[str, str] = {
     "WATER": "WOOD",
 }
 
+# Pre-computed reverse mappings — avoids reconstructing on every property access
+GENERATED_BY_MAPPING: dict[str, str] = {v: k for k, v in GENERATE_MAPPING.items()}
 
 OVERCOME_MAPPING: dict[str, str] = {
     "WOOD": "EARTH",
@@ -19,6 +21,9 @@ OVERCOME_MAPPING: dict[str, str] = {
     "METAL": "WOOD",
     "WATER": "FIRE",
 }
+
+# Pre-computed reverse mappings — avoids reconstructing on every property access
+OVERCOME_BY_MAPPING: dict[str, str] = {v: k for k, v in OVERCOME_MAPPING.items()}
 
 
 class FivePhase(MixEnum):
@@ -37,10 +42,8 @@ class FivePhase(MixEnum):
 
     @property
     def generated_by(self) -> "FivePhase":
-        """Return the phase that generates this phase."""
-        # Reverse the generates_mapping
-        reverse_mapping = {v: k for k, v in GENERATE_MAPPING.items()}
-        return FivePhase[reverse_mapping[self.name]]
+        """Return the phase that generates this phase (我生者)."""
+        return FivePhase[GENERATED_BY_MAPPING[self.name]]
 
     @property
     def overcomes(self) -> "FivePhase":
@@ -49,10 +52,8 @@ class FivePhase(MixEnum):
 
     @property
     def overcome_by(self) -> "FivePhase":
-        """Return the phase that is overcome by this phase."""
-        # Reverse the overcomes_mapping
-        reverse_mapping = {v: k for k, v in OVERCOME_MAPPING.items()}
-        return FivePhase[reverse_mapping[self.name]]
+        """Return the phase that is overcome by this phase (克我者)."""
+        return FivePhase[OVERCOME_BY_MAPPING[self.name]]
 
     def seasonal_strength(self, month_phase: FivePhase) -> "SeasonalStrength":
         """Return this phase's elemental strength for the given month phase.
