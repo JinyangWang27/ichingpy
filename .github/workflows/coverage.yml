@@ -28,3 +28,64 @@ jobs:
         uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
+
+  packaging:
+    name: Verify built distributions ship package data
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build distributions
+        run: |
+          pip install build
+          python -m build
+
+      - name: Check data files are present in the wheel and sdist
+        run: |
+          python - <<'PY'
+          import glob
+          import sys
+          import tarfile
+          import zipfile
+
+          expected = ["iching_en.json", "iching_zh.json"]
+
+          wheel = glob.glob("dist/*.whl")[0]
+          wheel_names = zipfile.ZipFile(wheel).namelist()
+          sdist = glob.glob("dist/*.tar.gz")[0]
+          sdist_names = tarfile.open(sdist).getnames()
+
+          missing = [
+              f"{name} missing from {kind}"
+              for kind, names, prefix in (
+                  ("wheel", wheel_names, "ichingpy/data/"),
+                  ("sdist", sdist_names, "src/ichingpy/data/"),
+              )
+              for name in expected
+              if not any(n.endswith(prefix + name) for n in names)
+          ]
+          if missing:
+              sys.exit("\n".join(missing))
+          print("wheel and sdist both ship ichingpy/data/*.json")
+          PY
+
+      - name: Smoke test the installed wheel
+        run: |
+          python -m venv /tmp/wheel-env
+          /tmp/wheel-env/bin/pip install --quiet dist/*.whl
+          # Run outside the checkout so src/ cannot mask a missing data file.
+          cd /tmp
+          /tmp/wheel-env/bin/python -c "
+          from ichingpy import Hexagram
+          from ichingpy.model.interpretation.line.iching_line import IChingLineInterp
+
+          for language in ('zh', 'en'):
+              IChingLineInterp.set_language(language)
+              print(Hexagram.from_binary([1, 1, 1, 2, 1, 3]))
+          "
