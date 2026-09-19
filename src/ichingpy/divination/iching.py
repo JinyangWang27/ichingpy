@@ -23,7 +23,7 @@ class IChingDivinationEngine(DivinationEngineBase):
             case Language.ENGLISH:
                 file_name = "iching_en.json"
 
-        with importlib.resources.files("ichingpy.data").joinpath(file_name).open(encoding="utf8") as f:
+        with importlib.resources.files("ichingpy").joinpath("data", file_name).open(encoding="utf8") as f:
             self._data = json.load(f)["hexagrams"]
 
     def execute(self, hexagram: Hexagram) -> None:
